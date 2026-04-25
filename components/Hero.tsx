@@ -31,7 +31,7 @@ export default function Hero() {
 
       scrollProgress.set(progress)
 
-      if (video.readyState >= 2 && video.duration) {
+      if (video.duration) {
         const t = progress * video.duration
         const v = video as HTMLVideoElement & { fastSeek?: (t: number) => void }
         if (typeof v.fastSeek === 'function') {
@@ -47,11 +47,14 @@ export default function Hero() {
       rafRef.current = requestAnimationFrame(update)
     }
 
-    // Quando i metadati sono pronti, porta il video al primo frame visibile
+    // Prime il video: play immediato poi pausa, sblocca il seek senza readyState
     const onLoaded = () => {
-      if (video.duration) {
+      video.play().then(() => {
+        video.pause()
         video.currentTime = 0.1
-      }
+      }).catch(() => {
+        video.currentTime = 0.1
+      })
     }
     video.addEventListener('loadedmetadata', onLoaded)
 
