@@ -54,21 +54,30 @@ export default function Hero() {
     // autoPlay fa partire il video — al primo timeupdate lo pausamo
     // e da quel momento è lo scroll a controllare currentTime
     let primed = false
+
     const onTimeUpdate = () => {
       if (primed) return
       primed = true
       video.pause()
+      video.autoplay = false
       video.removeEventListener('timeupdate', onTimeUpdate)
       update()
     }
 
+    // Dopo il priming blocca qualsiasi tentativo di play (mobile Safari)
+    const onPlay = () => {
+      if (primed) video.pause()
+    }
+
     video.addEventListener('timeupdate', onTimeUpdate)
+    video.addEventListener('play', onPlay)
     window.addEventListener('scroll', onScroll, { passive: true })
     update()
 
     return () => {
       window.removeEventListener('scroll', onScroll)
       video.removeEventListener('timeupdate', onTimeUpdate)
+      video.removeEventListener('play', onPlay)
       cancelAnimationFrame(rafRef.current)
     }
   }, [scrollProgress])
