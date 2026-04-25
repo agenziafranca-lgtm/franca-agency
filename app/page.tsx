@@ -11,7 +11,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'Franca.',
-  url: 'https://franca-agency.vercel.app',
+  url: 'https://agenziafranca.it',
   description: 'Trasformiamo aziende in brand di cui innamorarsi. Non facciamo compitini — costruiamo Brand.',
   email: 'mail@agenziafranca.it',
   contactPoint: {

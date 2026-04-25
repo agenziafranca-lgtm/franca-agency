@@ -9,7 +9,7 @@ const inter = Inter({
   display: "swap",
 })
 
-const BASE_URL = "https://franca-agency.vercel.app"
+const BASE_URL = "https://agenziafranca.it"
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),

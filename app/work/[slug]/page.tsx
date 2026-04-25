@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const c = getCaseBySlug(slug)
   if (!c) return {}
-  const url = `https://franca-agency.vercel.app/work/${c.slug}`
+  const url = `https://agenziafranca.it/work/${c.slug}`
   return {
     title: c.client,
     description: c.tagline,
@@ -45,19 +45,19 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
     '@type': 'Article',
     headline: `${c.client} — ${c.tagline}`,
     description: c.challenge.slice(0, 200),
-    image: `https://franca-agency.vercel.app${c.heroImage}`,
+    image: `https://agenziafranca.it${c.heroImage}`,
     author: { '@type': 'Organization', name: 'Franca.' },
-    publisher: { '@type': 'Organization', name: 'Franca.', url: 'https://franca-agency.vercel.app' },
-    mainEntityOfPage: `https://franca-agency.vercel.app/work/${c.slug}`,
+    publisher: { '@type': 'Organization', name: 'Franca.', url: 'https://agenziafranca.it' },
+    mainEntityOfPage: `https://agenziafranca.it/work/${c.slug}`,
   }
 
   const breadcrumbLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://franca-agency.vercel.app' },
-      { '@type': 'ListItem', position: 2, name: 'Lavori', item: 'https://franca-agency.vercel.app/#work' },
-      { '@type': 'ListItem', position: 3, name: c.client, item: `https://franca-agency.vercel.app/work/${c.slug}` },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://agenziafranca.it' },
+      { '@type': 'ListItem', position: 2, name: 'Lavori', item: 'https://agenziafranca.it/#work' },
+      { '@type': 'ListItem', position: 3, name: c.client, item: `https://agenziafranca.it/work/${c.slug}` },
     ],
   }
 

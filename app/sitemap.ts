@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next"
 import { cases } from "@/lib/cases"
 
-const BASE_URL = "https://franca-agency.vercel.app"
+const BASE_URL = "https://agenziafranca.it"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const casePages = cases.map((c) => ({
