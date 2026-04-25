@@ -42,3 +42,5 @@ next-env.d.ts
 public/francahero.mp4
 assets/
 .claude/
+
+.vercel

@@ -11,9 +11,31 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const c = getCaseBySlug(slug)
   if (!c) return {}
+  const url = `https://franca-agency.vercel.app/work/${c.slug}`
   return {
-    title: `${c.client} — Franca.`,
+    title: c.client,
     description: c.tagline,
+    openGraph: {
+      type: 'article',
+      url,
+      title: `${c.client} — Franca.`,
+      description: c.tagline,
+      images: [
+        {
+          url: c.heroImage,
+          width: 1200,
+          height: 630,
+          alt: c.client,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${c.client} — Franca.`,
+      description: c.tagline,
+      images: [c.heroImage],
+    },
+    alternates: { canonical: url },
   }
 }
 
@@ -22,8 +44,27 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   const c = getCaseBySlug(slug)
   if (!c) notFound()
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: `${c.client} — ${c.tagline}`,
+    description: c.challenge.slice(0, 200),
+    image: `https://franca-agency.vercel.app${c.heroImage}`,
+    author: { '@type': 'Organization', name: 'Franca.' },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Franca.',
+      url: 'https://franca-agency.vercel.app',
+    },
+    mainEntityOfPage: `https://franca-agency.vercel.app/work/${c.slug}`,
+  }
+
   return (
     <main className="bg-white min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* ── Back link ───────────────────────────────────── */}
       <div className="fixed top-5 left-5 z-50">
         <Link
