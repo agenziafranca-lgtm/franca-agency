@@ -51,18 +51,24 @@ export default function Hero() {
       rafRef.current = requestAnimationFrame(update)
     }
 
-    const onLoaded = () => {
-      seek(0.1)   // mostra primo frame visibile
-      update()    // aggiorna posizione in base allo scroll corrente
+    // autoPlay fa partire il video — al primo timeupdate lo pausamo
+    // e da quel momento è lo scroll a controllare currentTime
+    let primed = false
+    const onTimeUpdate = () => {
+      if (primed) return
+      primed = true
+      video.pause()
+      video.removeEventListener('timeupdate', onTimeUpdate)
+      update()
     }
 
-    video.addEventListener('loadedmetadata', onLoaded)
+    video.addEventListener('timeupdate', onTimeUpdate)
     window.addEventListener('scroll', onScroll, { passive: true })
     update()
 
     return () => {
       window.removeEventListener('scroll', onScroll)
-      video.removeEventListener('loadedmetadata', onLoaded)
+      video.removeEventListener('timeupdate', onTimeUpdate)
       cancelAnimationFrame(rafRef.current)
     }
   }, [scrollProgress])
@@ -118,6 +124,7 @@ export default function Hero() {
           <video
             ref={videoRef}
             src="/francahero2.mp4"
+            autoPlay
             muted
             playsInline
             preload="auto"
