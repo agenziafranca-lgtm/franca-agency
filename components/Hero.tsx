@@ -24,22 +24,26 @@ export default function Hero() {
     const section = sectionRef.current
     if (!video || !section) return
 
+    const seek = (time: number) => {
+      if (!video.duration || !isFinite(video.duration)) return
+      const t = Math.max(0, Math.min(video.duration, time))
+      try {
+        const v = video as HTMLVideoElement & { fastSeek?: (t: number) => void }
+        if (typeof v.fastSeek === 'function') v.fastSeek(t)
+        else video.currentTime = t
+      } catch {
+        // seek fallito — ignora (può succedere su mobile durante caricamento)
+      }
+    }
+
     const update = () => {
       const rect = section.getBoundingClientRect()
       const maxScroll = section.offsetHeight - window.innerHeight
+      if (maxScroll <= 0) return
+
       const progress = Math.max(0, Math.min(1, -rect.top / maxScroll))
-
       scrollProgress.set(progress)
-
-      if (video.duration) {
-        const t = progress * video.duration
-        const v = video as HTMLVideoElement & { fastSeek?: (t: number) => void }
-        if (typeof v.fastSeek === 'function') {
-          v.fastSeek(t)
-        } else {
-          video.currentTime = t
-        }
-      }
+      seek(progress * (video.duration || 0))
     }
 
     const onScroll = () => {
@@ -47,19 +51,15 @@ export default function Hero() {
       rafRef.current = requestAnimationFrame(update)
     }
 
-    // Prime il video: play immediato poi pausa, sblocca il seek senza readyState
     const onLoaded = () => {
-      video.play().then(() => {
-        video.pause()
-        video.currentTime = 0.1
-      }).catch(() => {
-        video.currentTime = 0.1
-      })
+      seek(0.1)   // mostra primo frame visibile
+      update()    // aggiorna posizione in base allo scroll corrente
     }
-    video.addEventListener('loadedmetadata', onLoaded)
 
+    video.addEventListener('loadedmetadata', onLoaded)
     window.addEventListener('scroll', onScroll, { passive: true })
     update()
+
     return () => {
       window.removeEventListener('scroll', onScroll)
       video.removeEventListener('loadedmetadata', onLoaded)
