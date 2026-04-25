@@ -47,10 +47,19 @@ export default function Hero() {
       rafRef.current = requestAnimationFrame(update)
     }
 
+    // Quando i metadati sono pronti, porta il video al primo frame visibile
+    const onLoaded = () => {
+      if (video.duration) {
+        video.currentTime = 0.1
+      }
+    }
+    video.addEventListener('loadedmetadata', onLoaded)
+
     window.addEventListener('scroll', onScroll, { passive: true })
     update()
     return () => {
       window.removeEventListener('scroll', onScroll)
+      video.removeEventListener('loadedmetadata', onLoaded)
       cancelAnimationFrame(rafRef.current)
     }
   }, [scrollProgress])
