@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     template: "%s — Franca.",
   },
   description:
-    "Trasformiamo aziende in brand di cui innamorarsi. Non facciamo compitini — costruiamo Brand. Strategia, creatività e performance marketing per PMI italiane.",
+    "Trasformiamo aziende in brand di cui innamorarsi. Non facciamo compitini — costruiamo Brand. Scopri come lavoriamo.",
   keywords: [
     "agenzia marketing",
     "brand strategy",

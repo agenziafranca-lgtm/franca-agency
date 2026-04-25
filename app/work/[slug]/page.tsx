@@ -20,14 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       url,
       title: `${c.client} — Franca.`,
       description: c.tagline,
-      images: [
-        {
-          url: c.heroImage,
-          width: 1200,
-          height: 630,
-          alt: c.client,
-        },
-      ],
+      images: [{ url: c.heroImage, width: 1200, height: 630, alt: c.client }],
     },
     twitter: {
       card: 'summary_large_image',
@@ -44,6 +37,9 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   const c = getCaseBySlug(slug)
   if (!c) notFound()
 
+  // Altri 3 casi studio correlati (esclude il corrente)
+  const related = cases.filter((x) => x.slug !== c.slug).slice(0, 3)
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -51,20 +47,25 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
     description: c.challenge.slice(0, 200),
     image: `https://franca-agency.vercel.app${c.heroImage}`,
     author: { '@type': 'Organization', name: 'Franca.' },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Franca.',
-      url: 'https://franca-agency.vercel.app',
-    },
+    publisher: { '@type': 'Organization', name: 'Franca.', url: 'https://franca-agency.vercel.app' },
     mainEntityOfPage: `https://franca-agency.vercel.app/work/${c.slug}`,
+  }
+
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://franca-agency.vercel.app' },
+      { '@type': 'ListItem', position: 2, name: 'Lavori', item: 'https://franca-agency.vercel.app/#work' },
+      { '@type': 'ListItem', position: 3, name: c.client, item: `https://franca-agency.vercel.app/work/${c.slug}` },
+    ],
   }
 
   return (
     <main className="bg-white min-h-screen">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+
       {/* ── Back link ───────────────────────────────────── */}
       <div className="fixed top-5 left-5 z-50">
         <Link
@@ -80,11 +81,10 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
       <section className="relative h-[70vh] overflow-hidden">
         <img
           src={c.heroImage}
-          alt={c.client}
+          alt={`Caso studio ${c.client} — ${c.category}`}
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#090909]/80 via-[#090909]/20 to-transparent" />
-
         <div className="absolute bottom-0 left-0 right-0 p-10 md:p-16 max-w-7xl mx-auto">
           <span className="text-[0.65rem] text-[#ff462e] font-bold tracking-[0.2em] uppercase block mb-4">
             {c.category}
@@ -103,11 +103,8 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
         {/* Services + Results */}
         <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-12 py-20 border-b border-[#eaeaea]">
-          {/* Services */}
           <div>
-            <p className="text-[0.65rem] text-[#ff462e] font-bold tracking-[0.2em] uppercase mb-6">
-              Servizi
-            </p>
+            <p className="text-[0.65rem] text-[#ff462e] font-bold tracking-[0.2em] uppercase mb-6">Servizi</p>
             <ul className="space-y-2">
               {c.services.map((s) => (
                 <li key={s} className="text-[0.9rem] text-[#090909] font-medium flex items-center gap-3">
@@ -117,18 +114,12 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
               ))}
             </ul>
           </div>
-
-          {/* Results */}
           <div>
-            <p className="text-[0.65rem] text-[#ff462e] font-bold tracking-[0.2em] uppercase mb-6">
-              Risultati
-            </p>
+            <p className="text-[0.65rem] text-[#ff462e] font-bold tracking-[0.2em] uppercase mb-6">Risultati</p>
             <div className="grid grid-cols-3 gap-8">
               {c.results.map((r) => (
                 <div key={r.label}>
-                  <div className="text-3xl md:text-4xl font-bold tracking-tighter text-[#090909] mb-1">
-                    {r.value}
-                  </div>
+                  <div className="text-3xl md:text-4xl font-bold tracking-tighter text-[#090909] mb-1">{r.value}</div>
                   <div className="text-[0.72rem] text-[#6b6b6b] leading-snug">{r.label}</div>
                 </div>
               ))}
@@ -138,28 +129,16 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
         {/* Challenge */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 py-20 border-b border-[#eaeaea]">
-          <div>
-            <p className="text-[0.65rem] text-[#ff462e] font-bold tracking-[0.2em] uppercase mb-4">
-              La sfida
-            </p>
-          </div>
-          <p className="text-[1.05rem] text-[#6b6b6b] leading-relaxed max-w-[62ch]">
-            {c.challenge}
-          </p>
+          <p className="text-[0.65rem] text-[#ff462e] font-bold tracking-[0.2em] uppercase">La sfida</p>
+          <p className="text-[1.05rem] text-[#6b6b6b] leading-relaxed max-w-[62ch]">{c.challenge}</p>
         </div>
 
         {/* Approach */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 py-20 border-b border-[#eaeaea]">
-          <div>
-            <p className="text-[0.65rem] text-[#ff462e] font-bold tracking-[0.2em] uppercase mb-4">
-              L&apos;approccio
-            </p>
-          </div>
+          <p className="text-[0.65rem] text-[#ff462e] font-bold tracking-[0.2em] uppercase">L&apos;approccio</p>
           <div className="space-y-6">
             {c.approach.map((p, i) => (
-              <p key={i} className="text-[1.05rem] text-[#6b6b6b] leading-relaxed max-w-[62ch]">
-                {p}
-              </p>
+              <p key={i} className="text-[1.05rem] text-[#6b6b6b] leading-relaxed max-w-[62ch]">{p}</p>
             ))}
           </div>
         </div>
@@ -172,7 +151,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                 <div key={i} className="aspect-[4/3] overflow-hidden rounded-2xl bg-[#eaeaea]">
                   <img
                     src={src}
-                    alt={`${c.client} — ${i + 1}`}
+                    alt={`${c.client} — immagine progetto ${i + 1}`}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -184,19 +163,45 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         {/* Body sections */}
         <div className="py-20 space-y-0">
           {c.body.map((b) => (
-            <div
-              key={b.section}
-              className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 py-14 border-b border-[#eaeaea]"
-            >
-              <h3 className="text-[1rem] font-bold text-[#090909]">
+            <div key={b.section} className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 py-14 border-b border-[#eaeaea]">
+              <h2 className="text-[1rem] font-bold text-[#090909]">
                 {b.section}<span style={{ color: '#ff462e' }}>.</span>
-              </h3>
-              <p className="text-[1.05rem] text-[#6b6b6b] leading-relaxed max-w-[62ch]">
-                {b.text}
-              </p>
+              </h2>
+              <p className="text-[1.05rem] text-[#6b6b6b] leading-relaxed max-w-[62ch]">{b.text}</p>
             </div>
           ))}
         </div>
+
+        {/* Related case studies — link interni */}
+        {related.length > 0 && (
+          <div className="py-20 border-t border-[#eaeaea]">
+            <p className="text-[0.65rem] text-[#ff462e] font-bold tracking-[0.2em] uppercase mb-10">
+              Altri lavori
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {related.map((r) => (
+                <Link
+                  key={r.slug}
+                  href={`/work/${r.slug}`}
+                  className="group block overflow-hidden rounded-2xl bg-[#eaeaea]"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <img
+                      src={r.cardImage}
+                      alt={`Caso studio ${r.client} — ${r.category}`}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#090909]/60 to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-5">
+                      <span className="text-[0.6rem] text-white/55 tracking-[0.15em] uppercase font-medium block mb-1">{r.category}</span>
+                      <span className="text-base font-bold text-white">{r.client}</span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* CTA */}
         <div className="py-24 border-t border-[#eaeaea]">

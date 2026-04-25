@@ -120,10 +120,14 @@ export default function Hero() {
           </p>
 
           <div>
-            <h1 className="text-[clamp(4.5rem,8vw,9rem)] font-bold tracking-tighter leading-[0.88] mb-10">
+            <h1 className="text-[clamp(4.5rem,8vw,9rem)] font-bold tracking-tighter leading-[0.88] mb-6">
               <span className="text-white">Franca</span>
               <span style={{ color: '#3626A7' }}>.</span>
             </h1>
+            <p className="text-white/70 text-[1rem] leading-snug mb-10 max-w-[32ch]">
+              Trasformiamo aziende in brand di cui innamorarsi.<br />
+              Non facciamo compitini — costruiamo Brand.
+            </p>
             <div className="flex flex-wrap gap-3">
               <a
                 href="#work"
