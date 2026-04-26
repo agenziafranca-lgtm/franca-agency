@@ -231,11 +231,11 @@ export default function CTA() {
                     onChange={(e) => set('sito', e.target.value)}
                   />
                 </div>
-                <label className="flex items-center gap-2 mt-2 cursor-pointer group w-fit">
+                <label onClick={toggleNoSito} className="flex items-center gap-2 mt-2 cursor-pointer group w-fit select-none">
                   <div className={`w-4 h-4 rounded border-2 transition-all duration-200 flex items-center justify-center shrink-0 ${form.noSito ? 'bg-[#090909] border-[#090909]' : 'bg-white border-[#c0c0c0] group-hover:border-[#090909]'}`}>
                     {form.noSito && <svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
                   </div>
-                  <span className="text-[0.75rem] text-[#6b6b6b]" onClick={toggleNoSito}>Non ho ancora un sito</span>
+                  <span className="text-[0.75rem] text-[#6b6b6b]">Non ho ancora un sito</span>
                 </label>
               </div>
             </div>
