@@ -97,7 +97,12 @@ export default function Hero() {
             muted
             playsInline
             preload="metadata"
-            onLoadedMetadata={() => { if (videoRef.current) videoRef.current.currentTime = 0.001 }}
+            onLoadedMetadata={() => {
+              const v = videoRef.current
+              if (!v) return
+              v.currentTime = 0.001
+              v.play().then(() => v.pause()).catch(() => {})
+            }}
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
         </div>
