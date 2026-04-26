@@ -1,10 +1,31 @@
+import Link from 'next/link'
+
 const year = new Date().getFullYear()
 
 const columns = {
-  Servizi: ['Identità di Brand', 'Produzione Creativa', 'Performance Marketing', 'Strategia Editoriale'],
-  Agenzia: ['Chi siamo', 'Lavori', 'Processo', 'Lavora con noi'],
-  Contatti: ['mail@agenziafranca.it', 'Instagram', 'LinkedIn'],
+  Servizi: [
+    { label: 'Identità di Brand', href: '/#services' },
+    { label: 'Produzione Creativa', href: '/#services' },
+    { label: 'Performance Marketing', href: '/#services' },
+    { label: 'Strategia Editoriale', href: '/#services' },
+  ],
+  Agenzia: [
+    { label: 'Chi siamo', href: '/#about' },
+    { label: 'Lavori', href: '/#work' },
+    { label: 'Contatti', href: '/#contact' },
+  ],
+  Contatti: [
+    { label: 'mail@agenziafranca.it', href: 'mailto:mail@agenziafranca.it' },
+    { label: 'Instagram', href: 'https://instagram.com/agenziafranca' },
+    { label: 'LinkedIn', href: 'https://linkedin.com/company/agenziafranca' },
+  ],
 }
+
+const legalLinks = [
+  { label: 'Privacy Policy', href: '/privacy' },
+  { label: 'Cookie Policy', href: '/cookie' },
+  { label: 'Termini di Servizio', href: '/termini' },
+]
 
 export default function Footer() {
   return (
@@ -32,13 +53,13 @@ export default function Footer() {
               </div>
               <ul className="space-y-3">
                 {items.map((item) => (
-                  <li key={item}>
-                    <a
-                      href="#"
+                  <li key={item.label}>
+                    <Link
+                      href={item.href}
                       className="text-[0.85rem] text-[#090909]/70 hover:text-[#090909] transition-colors duration-200"
                     >
-                      {item}
-                    </a>
+                      {item.label}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -51,14 +72,14 @@ export default function Footer() {
             &copy; {year} Franca. Tutti i diritti riservati. P.IVA IT12847193501
           </div>
           <div className="flex gap-6">
-            {['Privacy Policy', 'Cookie Policy', 'Termini di Servizio'].map((item) => (
-              <a
-                key={item}
-                href="#"
+            {legalLinks.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
                 className="text-[0.72rem] text-[#6b6b6b] hover:text-[#090909] transition-colors duration-200"
               >
-                {item}
-              </a>
+                {item.label}
+              </Link>
             ))}
           </div>
         </div>
