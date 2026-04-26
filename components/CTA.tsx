@@ -1,9 +1,8 @@
 'use client'
 
-import { useRef, useState } from 'react'
-import { motion, useInView } from 'framer-motion'
-import { ArrowRight, CheckCircle } from '@phosphor-icons/react'
-import Link from 'next/link'
+import { useRef, useState, useEffect } from 'react'
+import { motion, useInView, AnimatePresence } from 'framer-motion'
+import { ArrowRight, CheckCircle, X } from '@phosphor-icons/react'
 
 const serviziOptions = [
   'Identità di Brand',
@@ -23,9 +22,87 @@ const budgetOptions = [
 
 type Status = 'idle' | 'loading' | 'success' | 'error'
 
+function PrivacyModal({ onClose }: { onClose: () => void }) {
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [onClose])
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
+      className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-0 sm:p-6"
+      onClick={onClose}
+    >
+      <div className="absolute inset-0 bg-[#090909]/60 backdrop-blur-sm" />
+      <motion.div
+        initial={{ y: 40, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: 40, opacity: 0 }}
+        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+        onClick={(e) => e.stopPropagation()}
+        className="relative bg-white w-full sm:max-w-2xl max-h-[88vh] sm:max-h-[80vh] rounded-t-3xl sm:rounded-2xl overflow-hidden flex flex-col"
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between px-7 pt-6 pb-5 border-b border-[#eaeaea] shrink-0">
+          <div>
+            <span className="text-[0.6rem] text-[#ff462e] font-bold tracking-[0.2em] uppercase block mb-0.5">Documento legale</span>
+            <h3 className="text-lg font-bold tracking-tight text-[#090909]">Privacy Policy</h3>
+          </div>
+          <button
+            onClick={onClose}
+            className="w-9 h-9 rounded-full bg-[#f5f5f5] hover:bg-[#eaeaea] flex items-center justify-center transition-colors duration-200"
+            aria-label="Chiudi"
+          >
+            <X size={16} weight="bold" className="text-[#090909]" />
+          </button>
+        </div>
+
+        {/* Content */}
+        <div className="overflow-y-auto px-7 py-6 space-y-8 text-[0.88rem]">
+          <section>
+            <h4 className="font-bold text-[#090909] mb-2">1. Titolare del trattamento</h4>
+            <p className="text-[#6b6b6b] leading-relaxed">Il titolare del trattamento è <strong className="text-[#090909]">Franca</strong> (Alessandro Viappiani e Matteo Novelli), P.IVA IT12847193501, contattabile a <a href="mailto:mail@agenziafranca.it" className="text-[#ff462e]">mail@agenziafranca.it</a>.</p>
+          </section>
+          <section>
+            <h4 className="font-bold text-[#090909] mb-2">2. Dati raccolti</h4>
+            <p className="text-[#6b6b6b] leading-relaxed">Raccogliamo i dati che inserisci nel modulo di contatto (nome, email, azienda, sito web, servizi di interesse, budget e descrizione della tua sfida) e i dati di navigazione raccolti automaticamente dal sistema (IP, browser, pagine visitate).</p>
+          </section>
+          <section>
+            <h4 className="font-bold text-[#090909] mb-2">3. Finalità e base giuridica</h4>
+            <p className="text-[#6b6b6b] leading-relaxed">I dati vengono utilizzati esclusivamente per rispondere alla tua richiesta di contatto (base giuridica: consenso, Art. 6 lett. a GDPR) e per analisi statistica anonima del sito (base giuridica: interesse legittimo, Art. 6 lett. f GDPR).</p>
+          </section>
+          <section>
+            <h4 className="font-bold text-[#090909] mb-2">4. Conservazione e riservatezza</h4>
+            <p className="text-[#6b6b6b] leading-relaxed">I tuoi dati sono conservati per un massimo di 24 mesi e non vengono mai ceduti a terzi per finalità commerciali. Nessuno al di fuori di Franca avrà accesso alle informazioni che condividi.</p>
+          </section>
+          <section>
+            <h4 className="font-bold text-[#090909] mb-2">5. I tuoi diritti</h4>
+            <p className="text-[#6b6b6b] leading-relaxed">Hai il diritto di accedere ai tuoi dati, rettificarli, cancellarli, limitarne il trattamento o opporti al loro utilizzo. Scrivi a <a href="mailto:mail@agenziafranca.it" className="text-[#ff462e]">mail@agenziafranca.it</a> per qualsiasi richiesta.</p>
+          </section>
+        </div>
+
+        {/* Footer */}
+        <div className="px-7 py-4 border-t border-[#eaeaea] shrink-0">
+          <p className="text-[0.75rem] text-[#6b6b6b]">Ultimo aggiornamento: aprile 2026 — <a href="/privacy" target="_blank" className="text-[#ff462e] hover:underline">Versione completa</a></p>
+        </div>
+      </motion.div>
+    </motion.div>
+  )
+}
+
 export default function CTA() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
+  const [privacyOpen, setPrivacyOpen] = useState(false)
 
   const [form, setForm] = useState({
     nome: '',
@@ -227,9 +304,13 @@ export default function CTA() {
                 </div>
                 <span className="text-[0.8rem] text-[#6b6b6b] leading-snug">
                   I dati che inserisci sono riservati e non vengono condivisi con terzi.{' '}
-                  <Link href="/privacy" className="text-[#090909] underline hover:text-[#ff462e] transition-colors">
+                  <button
+                    type="button"
+                    onClick={() => setPrivacyOpen(true)}
+                    className="text-[#090909] underline hover:text-[#ff462e] transition-colors"
+                  >
                     Leggi l'informativa
-                  </Link>
+                  </button>
                   .
                 </span>
               </label>
@@ -256,6 +337,10 @@ export default function CTA() {
         )}
 
       </div>
+
+      <AnimatePresence>
+        {privacyOpen && <PrivacyModal onClose={() => setPrivacyOpen(false)} />}
+      </AnimatePresence>
     </section>
   )
 }
