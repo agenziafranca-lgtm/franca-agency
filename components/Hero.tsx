@@ -24,26 +24,18 @@ export default function Hero() {
     const section = sectionRef.current
     if (!video || !section) return
 
-    const seek = (time: number) => {
-      if (!video.duration || !isFinite(video.duration)) return
-      const t = Math.max(0, Math.min(video.duration, time))
-      try {
-        const v = video as HTMLVideoElement & { fastSeek?: (t: number) => void }
-        if (typeof v.fastSeek === 'function') v.fastSeek(t)
-        else video.currentTime = t
-      } catch {
-        // seek fallito — ignora (può succedere su mobile durante caricamento)
-      }
-    }
-
     const update = () => {
       const rect = section.getBoundingClientRect()
       const maxScroll = section.offsetHeight - window.innerHeight
-      if (maxScroll <= 0) return
+      if (maxScroll <= 0 || !video.duration || !isFinite(video.duration)) return
 
       const progress = Math.max(0, Math.min(1, -rect.top / maxScroll))
       scrollProgress.set(progress)
-      seek(progress * (video.duration || 0))
+
+      const targetTime = progress * video.duration
+      if (Math.abs(video.currentTime - targetTime) > 0.05) {
+        video.currentTime = targetTime
+      }
     }
 
     const onScroll = () => {
@@ -51,33 +43,11 @@ export default function Hero() {
       rafRef.current = requestAnimationFrame(update)
     }
 
-    // autoPlay fa partire il video — al primo timeupdate lo pausamo
-    // e da quel momento è lo scroll a controllare currentTime
-    let primed = false
-
-    const onTimeUpdate = () => {
-      if (primed) return
-      primed = true
-      video.pause()
-      video.autoplay = false
-      video.removeEventListener('timeupdate', onTimeUpdate)
-      update()
-    }
-
-    // Dopo il priming blocca qualsiasi tentativo di play (mobile Safari)
-    const onPlay = () => {
-      if (primed) video.pause()
-    }
-
-    video.addEventListener('timeupdate', onTimeUpdate)
-    video.addEventListener('play', onPlay)
     window.addEventListener('scroll', onScroll, { passive: true })
     update()
 
     return () => {
       window.removeEventListener('scroll', onScroll)
-      video.removeEventListener('timeupdate', onTimeUpdate)
-      video.removeEventListener('play', onPlay)
       cancelAnimationFrame(rafRef.current)
     }
   }, [scrollProgress])
@@ -133,10 +103,9 @@ export default function Hero() {
           <video
             ref={videoRef}
             src="/francahero2.mp4"
-            autoPlay
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
         </div>
