@@ -5,19 +5,11 @@ import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { ArrowRight, CheckCircle, X } from '@phosphor-icons/react'
 
 const serviziOptions = [
-  'Identità di Brand',
-  'Produzione Creativa',
-  'Performance Marketing',
-  'Strategia Editoriale',
-  'Non so ancora',
-]
-
-const budgetOptions = [
-  'Meno di €500/mese',
-  '€500 – €1.500/mese',
-  '€1.500 – €3.000/mese',
-  'Oltre €3.000/mese',
-  'Da definire insieme',
+  { label: 'Costruire il mio brand', sub: 'logo, naming, identità visiva' },
+  { label: 'Foto, video e contenuti', sub: 'produzione creativa' },
+  { label: 'Fare pubblicità online', sub: 'Google, Meta, social ads' },
+  { label: 'Gestire i miei social', sub: 'strategia e piano editoriale' },
+  { label: 'Non so ancora', sub: 'parliamoci' },
 ]
 
 type Status = 'idle' | 'loading' | 'success' | 'error'
@@ -109,8 +101,8 @@ export default function CTA() {
     email: '',
     azienda: '',
     sito: '',
+    noSito: false,
     servizi: [] as string[],
-    budget: '',
     sfida: '',
     privacy: false,
   })
@@ -124,6 +116,11 @@ export default function CTA() {
       ? form.servizi.filter((x) => x !== s)
       : [...form.servizi, s]
     )
+
+  const toggleNoSito = () => {
+    const next = !form.noSito
+    setForm((f) => ({ ...f, noSito: next, sito: next ? 'Non ho ancora un sito' : '' }))
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -221,14 +218,26 @@ export default function CTA() {
                   onChange={(e) => set('azienda', e.target.value)}
                 />
               </Field>
-              <Field label="Sito web">
-                <input
-                  type="url"
-                  placeholder="https://tuoazienda.it"
-                  value={form.sito}
-                  onChange={(e) => set('sito', e.target.value)}
-                />
-              </Field>
+              <div>
+                <label className="block text-[0.75rem] font-bold text-[#090909] tracking-[0.08em] uppercase mb-2">
+                  Sito web
+                </label>
+                <div className="[&_input]:w-full [&_input]:bg-[#f5f5f5] [&_input]:border [&_input]:border-[#eaeaea] [&_input]:rounded-xl [&_input]:px-4 [&_input]:py-3 [&_input]:text-[0.9rem] [&_input]:text-[#090909] [&_input]:placeholder-[#c0c0c0] [&_input]:outline-none [&_input]:transition-all [&_input]:duration-200 [&_input:focus]:border-[#090909] [&_input:focus]:bg-white [&_input:disabled]:opacity-40">
+                  <input
+                    type="text"
+                    placeholder="tuoazienda.it"
+                    value={form.noSito ? '' : form.sito}
+                    disabled={form.noSito}
+                    onChange={(e) => set('sito', e.target.value)}
+                  />
+                </div>
+                <label className="flex items-center gap-2 mt-2 cursor-pointer group w-fit">
+                  <div className={`w-4 h-4 rounded border-2 transition-all duration-200 flex items-center justify-center shrink-0 ${form.noSito ? 'bg-[#090909] border-[#090909]' : 'bg-white border-[#c0c0c0] group-hover:border-[#090909]'}`}>
+                    {form.noSito && <svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
+                  </div>
+                  <span className="text-[0.75rem] text-[#6b6b6b]" onClick={toggleNoSito}>Non ho ancora un sito</span>
+                </label>
+              </div>
             </div>
 
             {/* Servizi */}
@@ -238,37 +247,25 @@ export default function CTA() {
               </label>
               <div className="flex flex-wrap gap-2">
                 {serviziOptions.map((s) => {
-                  const selected = form.servizi.includes(s)
+                  const selected = form.servizi.includes(s.label)
                   return (
                     <button
-                      key={s}
+                      key={s.label}
                       type="button"
-                      onClick={() => toggleServizio(s)}
-                      className={`px-4 py-2 rounded-full text-[0.8rem] font-medium border transition-all duration-200 ${
+                      onClick={() => toggleServizio(s.label)}
+                      className={`px-4 py-2.5 rounded-xl text-left transition-all duration-200 border ${
                         selected
                           ? 'bg-[#ff462e] border-[#ff462e] text-white'
-                          : 'bg-transparent border-[#eaeaea] text-[#6b6b6b] hover:border-[#090909] hover:text-[#090909]'
+                          : 'bg-transparent border-[#eaeaea] text-[#090909] hover:border-[#090909]'
                       }`}
                     >
-                      {s}
+                      <div className={`text-[0.82rem] font-medium leading-tight ${selected ? 'text-white' : 'text-[#090909]'}`}>{s.label}</div>
+                      <div className={`text-[0.68rem] mt-0.5 ${selected ? 'text-white/70' : 'text-[#6b6b6b]'}`}>{s.sub}</div>
                     </button>
                   )
                 })}
               </div>
             </div>
-
-            {/* Budget */}
-            <Field label="Budget indicativo">
-              <select
-                value={form.budget}
-                onChange={(e) => set('budget', e.target.value)}
-              >
-                <option value="">Seleziona un range</option>
-                {budgetOptions.map((b) => (
-                  <option key={b} value={b}>{b}</option>
-                ))}
-              </select>
-            </Field>
 
             {/* Sfida */}
             <Field label="La tua sfida principale *">
