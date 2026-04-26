@@ -24,7 +24,7 @@ const services = [
     number: '03',
     title: 'Performance Marketing',
     description:
-      'Paid search, paid social e media gestiti da chi capisce sia i dati che il design. Non separiamo le due cose — e i risultati si vedono.',
+      'La maggior parte delle agenzie ottimizza il budget. Noi ottimizziamo il messaggio — e poi il budget segue. Paid search, paid social e media pensati da chi sa che dietro ogni clic c\'è una persona.',
     tags: ['Google Ads', 'Meta Ads', 'Programmatic', 'Analytics', 'CRO'],
     bg: '#ff462e',
   },
@@ -82,44 +82,40 @@ function ServiceCard({
           backgroundColor: service.bg,
           filter: useTransform(brightness, (v) => `brightness(${v})`),
         }}
-        className="rounded-2xl overflow-hidden min-h-[65vh] grid grid-cols-1 md:grid-cols-[1fr_2fr] shadow-[0_-8px_48px_rgba(0,0,0,0.18)]"
+        className="relative rounded-xl overflow-hidden min-h-[50vh] lg:min-h-[65vh] flex flex-col justify-between shadow-[0_-8px_48px_rgba(0,0,0,0.18)]"
       >
-        {/* Left: number panel */}
-        <div className="relative flex items-center justify-center p-10 border-b md:border-b-0 md:border-r border-white/10 min-h-[180px]">
-          <span
-            className="absolute select-none font-bold tracking-tighter leading-none pointer-events-none"
-            style={{
-              fontSize: 'clamp(8rem, 16vw, 14rem)',
-              color: '#ffffff',
-              opacity: 0.06,
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-            }}
-            aria-hidden="true"
-          >
-            {service.number}
-          </span>
-          <span
-            className="relative text-[0.65rem] font-bold tracking-[0.22em] uppercase text-white/40"
-          >
+        {/* Watermark number — decorativo, solo desktop */}
+        <span
+          aria-hidden="true"
+          className="hidden lg:block absolute select-none pointer-events-none font-bold tracking-tighter leading-none text-white"
+          style={{
+            fontSize: 'clamp(10rem, 22vw, 18rem)',
+            opacity: 0.06,
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+          }}
+        >
+          {service.number}
+        </span>
+
+        <div className="p-8 lg:p-14 relative">
+          <span className="text-[0.65rem] font-bold tracking-[0.22em] uppercase text-white/40">
             {service.number}
           </span>
         </div>
-
-        {/* Right: content */}
-        <div className="flex flex-col justify-center p-10 lg:p-14">
+        <div className="p-8 lg:p-14 relative">
           <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter text-white leading-tight mb-5">
             {service.title}
           </h3>
-          <p className="text-white/65 leading-relaxed text-[0.95rem] max-w-[52ch] mb-8">
+          <p className="text-white/70 leading-relaxed text-[0.95rem] max-w-[52ch] mb-8">
             {service.description}
           </p>
           <div className="flex flex-wrap gap-2">
             {service.tags.map((tag) => (
               <span
                 key={tag}
-                className="text-[0.68rem] border border-white/20 text-white/60 px-3 py-1.5 rounded-full tracking-[0.04em]"
+                className="text-[0.68rem] bg-white/10 border border-white/20 text-white/80 px-3 py-1.5 rounded-full tracking-[0.04em]"
               >
                 {tag}
               </span>

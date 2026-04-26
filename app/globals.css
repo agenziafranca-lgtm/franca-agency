@@ -66,3 +66,27 @@ body::after {
 .marquee-track:hover {
   animation-play-state: paused;
 }
+
+/* Hero progress bar — colore adattivo al pannello sottostante */
+.hero-progress-fill {
+  background-color: #ff462e;
+}
+
+.hero-progress-track {
+  background-color: rgba(9,9,9,0.1);
+}
+
+@media (min-width: 1024px) {
+  .hero-progress-fill {
+    background-image: linear-gradient(to right, white 42vw, #ff462e 0);
+    background-size: 100vw 100%;
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-color: transparent;
+  }
+
+  .hero-progress-track {
+    background-image: linear-gradient(to right, rgba(255,255,255,0.2) 42vw, rgba(9,9,9,0.1) 0);
+    background-color: transparent;
+  }
+}

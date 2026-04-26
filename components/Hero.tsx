@@ -4,11 +4,6 @@ import { useRef, useEffect } from 'react'
 import { motion, useMotionValue, useTransform } from 'framer-motion'
 import { ArrowDown, ArrowRight } from '@phosphor-icons/react'
 
-const stats = [
-  { value: '15+', label: 'Clienti serviti' },
-  { value: '8', label: 'Attivi ora' },
-  { value: '100k+', label: 'Follower organici generati' },
-]
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -24,30 +19,34 @@ export default function Hero() {
     const section = sectionRef.current
     if (!video || !section) return
 
-    const update = () => {
+    const v = video as HTMLVideoElement & { fastSeek?: (t: number) => void }
+    const seek = (t: number) => v.fastSeek ? v.fastSeek(t) : (video.currentTime = t)
+
+    let running = true
+
+    const tick = () => {
+      if (!running) return
+
       const rect = section.getBoundingClientRect()
       const maxScroll = section.offsetHeight - window.innerHeight
-      if (maxScroll <= 0 || !video.duration || !isFinite(video.duration)) return
 
-      const progress = Math.max(0, Math.min(1, -rect.top / maxScroll))
-      scrollProgress.set(progress)
+      if (maxScroll > 0 && video.duration && isFinite(video.duration)) {
+        const progress = Math.max(0, Math.min(1, -rect.top / maxScroll))
+        scrollProgress.set(progress)
 
-      const targetTime = progress * video.duration
-      if (Math.abs(video.currentTime - targetTime) > 0.05) {
-        video.currentTime = targetTime
+        const targetTime = progress * video.duration
+        if (Math.abs(video.currentTime - targetTime) > 0.033) {
+          seek(targetTime)
+        }
       }
+
+      rafRef.current = requestAnimationFrame(tick)
     }
 
-    const onScroll = () => {
-      cancelAnimationFrame(rafRef.current)
-      rafRef.current = requestAnimationFrame(update)
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true })
-    update()
+    rafRef.current = requestAnimationFrame(tick)
 
     return () => {
-      window.removeEventListener('scroll', onScroll)
+      running = false
       cancelAnimationFrame(rafRef.current)
     }
   }, [scrollProgress])
@@ -85,14 +84,6 @@ export default function Hero() {
               </a>
             </div>
           </div>
-          <div className="grid grid-cols-3 gap-4 pt-4 border-t border-white/20">
-            {stats.map((s) => (
-              <div key={s.label}>
-                <div className="text-lg font-bold tracking-tighter text-white">{s.value}</div>
-                <div className="text-[0.55rem] text-white/50 mt-0.5 tracking-[0.1em] uppercase">{s.label}</div>
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Mobile bottom + Desktop right — video panel */}
@@ -105,25 +96,24 @@ export default function Hero() {
             src="/francahero2.mp4"
             muted
             playsInline
-            preload="metadata"
+            preload="auto"
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
         </div>
 
         {/* ── DESKTOP: red left panel (42%) ─────────────── */}
-        <div className="hidden lg:flex absolute inset-y-0 left-0 w-[42%] bg-[#ff462e] flex-col justify-between px-10 xl:pl-[max(2.5rem,calc((100vw-1400px)/2+2.5rem))] pt-28 pb-10">
-          <p className="text-[0.68rem] text-white/55 font-bold tracking-[0.2em] uppercase">
-            Agenzia di Marketing
-          </p>
-
+        <div className="hidden lg:flex absolute inset-y-0 left-0 w-[42%] bg-[#ff462e] flex-col justify-center px-10 xl:pl-[max(2.5rem,calc((100vw-1400px)/2+2.5rem))] pt-28 pb-10">
           <div>
+            <p className="text-[0.68rem] text-white/55 font-bold tracking-[0.2em] uppercase mb-8">
+              Agenzia di Marketing
+            </p>
             <h1 className="text-[clamp(4.5rem,8vw,9rem)] font-bold tracking-tighter leading-[0.88] mb-6">
               <span className="text-white">Franca</span>
               <span style={{ color: '#3626A7' }}>.</span>
             </h1>
             <p className="text-white/70 text-[1rem] leading-snug mb-10 max-w-[32ch]">
-              Trasformiamo aziende in brand di cui innamorarsi.<br />
-              Non facciamo compitini — costruiamo Brand.
+              La maggior parte del marketing si dimentica in 24 ore.<br />
+              Noi costruiamo brand che restano — nella testa e nel cuore delle persone.
             </p>
             <div className="flex flex-wrap gap-3">
               <a
@@ -142,14 +132,6 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-6 pt-8 border-t border-white/20">
-            {stats.map((s) => (
-              <div key={s.label}>
-                <div className="text-2xl font-bold tracking-tighter text-white">{s.value}</div>
-                <div className="text-[0.63rem] text-white/50 mt-1 tracking-[0.1em] uppercase">{s.label}</div>
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* ── Desktop scroll indicator ───────────────────── */}
@@ -167,10 +149,10 @@ export default function Hero() {
         </motion.div>
 
         {/* ── Progress bar ───────────────────────────────── */}
-        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#090909]/10 z-50">
+        <div className="absolute bottom-0 left-0 right-0 h-[2px] z-50 hero-progress-track">
           <motion.div
             style={{ width: barWidth }}
-            className="h-full bg-[#ff462e] origin-left"
+            className="h-full origin-left hero-progress-fill"
           />
         </div>
 

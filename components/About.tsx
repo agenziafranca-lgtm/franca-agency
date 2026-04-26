@@ -19,8 +19,8 @@ const values = [
 ]
 
 const metrics = [
-  { value: '15+', label: 'Clienti serviti' },
-  { value: '100k+', label: 'Follower organici generati' },
+  { value: '15+', label: 'Brand costruiti' },
+  { value: '100k+', label: 'Follower organici senza ads' },
   { value: '6', label: 'Settori diversi' },
 ]
 
@@ -47,7 +47,10 @@ export default function About() {
 
             <div className="space-y-5 text-[#6b6b6b] leading-relaxed text-[0.95rem] max-w-[56ch]">
               <p>
-                Franca nasce dalla frustrazione di Matteo e Alessandro per un modo di fare marketing che aveva perso il senso. Eseguire compiti meccanicamente, senza capirne lo scopo. Il pilota automatico professionale.
+                Franca nasce dalla frustrazione di Alessandro Viappiani e Matteo Novelli per un modo di fare marketing che aveva perso il senso. Eseguire compiti meccanicamente, senza capirne lo scopo. Il pilota automatico professionale.
+              </p>
+              <p>
+                Alessandro viene dal mondo del web e della strategia digitale: anni a costruire sistemi che funzionano, misurare quello che conta, tradurre la tecnologia in vantaggio competitivo. Matteo dalla parte creativa e media — campagne ADV, content strategy, social. Sa cosa spinge le persone a fermarsi, tornare, comprare.
               </p>
               <p>
                 Siamo in due. Lavoriamo da ovunque. Seguiamo pochi clienti alla volta — quelli con cui ha senso lavorare — e mettiamo la faccia su ogni cosa che firmiamo.

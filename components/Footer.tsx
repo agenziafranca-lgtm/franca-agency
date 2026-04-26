@@ -12,11 +12,16 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr] gap-12 mb-14">
           <div>
-            <div className="text-[1.3rem] font-bold tracking-tight text-[#090909] mb-4">
-              Franca<span style={{ color: '#3626A7' }}>.</span>
+            <img
+              src="/mascot-trasparente.png"
+              alt="Franca."
+              className="h-14 w-auto mb-4"
+            />
+            <div className="text-[1.9rem] font-bold tracking-tight mb-4">
+              <span style={{ color: '#ff462e' }}>Franca</span><span style={{ color: '#3626A7' }}>.</span>
             </div>
             <p className="text-[0.85rem] text-[#6b6b6b] leading-relaxed max-w-[28ch]">
-              Trasformiamo aziende in brand di cui innamorarsi. Non facciamo compitini — costruiamo Brand. Lavoriamo da ovunque.
+              Costruiamo brand che restano. Per pochi clienti alla volta, da ovunque — con la faccia su ogni cosa che firmiamo.
             </p>
           </div>
 

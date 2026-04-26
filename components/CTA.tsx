@@ -18,7 +18,7 @@ export default function CTA() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <h2 className="text-5xl md:text-6xl xl:text-[4.5rem] font-bold tracking-tighter text-[#090909] leading-none mb-10">
-              Pronti a costruire qualcosa che valga la pena costruire<span style={{ color: '#3626A7' }}>?</span>
+              Non cerchiamo clienti. Cerchiamo brand in cui credere<span style={{ color: '#3626A7' }}>.</span>
             </h2>
             <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
               <a
