@@ -104,7 +104,7 @@ export default function Hero() {
       <div className="sticky top-0 h-screen overflow-hidden">
 
         {/* Mobile top — orange */}
-        <div className="lg:hidden absolute top-0 inset-x-0 h-1/2 bg-[#ff462e] flex flex-col justify-between px-6 pt-20 pb-5 z-10">
+        <div className="lg:hidden absolute top-0 inset-x-0 h-[62%] bg-[#ff462e] flex flex-col justify-between px-6 pt-20 pb-5 z-10">
           <p className="text-[0.62rem] text-white/55 font-bold tracking-[0.2em] uppercase">
             Agenzia di Marketing
           </p>
@@ -132,7 +132,7 @@ export default function Hero() {
 
         {/* Mobile bottom + Desktop right — canvas panel */}
         <div className="
-          absolute bottom-0 inset-x-0 h-1/2 bg-[#090909]
+          absolute bottom-0 inset-x-0 h-[38%] bg-[#090909]
           lg:top-0 lg:h-full lg:left-[42%] lg:right-0
         ">
           <canvas
