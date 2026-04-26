@@ -4,60 +4,104 @@ import { useRef, useEffect } from 'react'
 import { motion, useMotionValue, useTransform } from 'framer-motion'
 import { ArrowDown, ArrowRight } from '@phosphor-icons/react'
 
+const TOTAL_FRAMES = 130
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
-  const videoRef = useRef<HTMLVideoElement>(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
   const rafRef = useRef<number>(0)
+  const framesRef = useRef<HTMLImageElement[]>([])
+  const loadedRef = useRef<boolean[]>(Array.from({ length: TOTAL_FRAMES }, () => false))
+  const lastFrameRef = useRef(-1)
   const scrollProgress = useMotionValue(0)
 
   const indicatorOpacity = useTransform(scrollProgress, [0, 0.08], [1, 0])
   const barWidth = useTransform(scrollProgress, [0, 1], ['0%', '100%'])
 
-  useEffect(() => {
-    const video = videoRef.current
-    const section = sectionRef.current
-    if (!video || !section) return
+  const drawFrame = (index: number) => {
+    const canvas = canvasRef.current
+    const img = framesRef.current[index]
+    if (!canvas || !img || !loadedRef.current[index]) return
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+    const cw = canvas.width
+    const ch = canvas.height
+    const scale = Math.max(cw / img.naturalWidth, ch / img.naturalHeight)
+    const sw = img.naturalWidth * scale
+    const sh = img.naturalHeight * scale
+    ctx.clearRect(0, 0, cw, ch)
+    ctx.drawImage(img, (cw - sw) / 2, (ch - sh) / 2, sw, sh)
+  }
 
-    const v = video as HTMLVideoElement & { fastSeek?: (t: number) => void }
-    const seek = (t: number) => v.fastSeek ? v.fastSeek(t) : (video.currentTime = t)
+  // Preload frames
+  useEffect(() => {
+    const frames: HTMLImageElement[] = []
+    for (let i = 0; i < TOTAL_FRAMES; i++) {
+      const img = new Image()
+      const num = String(i + 1).padStart(3, '0')
+      img.src = `/frames/frame-${num}.webp`
+      const idx = i
+      img.onload = () => {
+        loadedRef.current[idx] = true
+        if (idx === 0) drawFrame(0)
+      }
+      frames.push(img)
+    }
+    framesRef.current = frames
+  }, [])
+
+  // Canvas size sync
+  const syncCanvasSize = () => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const dpr = Math.min(window.devicePixelRatio || 1, 2)
+    canvas.width = canvas.offsetWidth * dpr
+    canvas.height = canvas.offsetHeight * dpr
+  }
+
+  // RAF scroll loop
+  useEffect(() => {
+    const section = sectionRef.current
+    if (!section) return
+
+    syncCanvasSize()
 
     let running = true
 
     const tick = () => {
       if (!running) return
-
       const rect = section.getBoundingClientRect()
       const maxScroll = section.offsetHeight - window.innerHeight
-
-      if (maxScroll > 0 && video.duration && isFinite(video.duration)) {
+      if (maxScroll > 0) {
         const progress = Math.max(0, Math.min(1, -rect.top / maxScroll))
         scrollProgress.set(progress)
-
-        const targetTime = progress * video.duration
-        if (Math.abs(video.currentTime - targetTime) > 0.033) {
-          seek(targetTime)
+        const frameIndex = Math.round(progress * (TOTAL_FRAMES - 1))
+        if (frameIndex !== lastFrameRef.current) {
+          drawFrame(frameIndex)
+          lastFrameRef.current = frameIndex
         }
       }
-
       rafRef.current = requestAnimationFrame(tick)
     }
 
     rafRef.current = requestAnimationFrame(tick)
 
+    const onResize = () => {
+      syncCanvasSize()
+      drawFrame(Math.max(0, lastFrameRef.current))
+    }
+    window.addEventListener('resize', onResize)
+
     return () => {
       running = false
       cancelAnimationFrame(rafRef.current)
+      window.removeEventListener('resize', onResize)
     }
   }, [scrollProgress])
 
   return (
     <section ref={sectionRef} className="h-[200vh] lg:h-[300vh]">
       <div className="sticky top-0 h-screen overflow-hidden">
-
-        {/* ── MOBILE: stacked layout ────────────────────────
-            Top half  → orange panel with wordmark + CTAs
-            Bottom half → white panel with video           */}
 
         {/* Mobile top — orange */}
         <div className="lg:hidden absolute top-0 inset-x-0 h-1/2 bg-[#ff462e] flex flex-col justify-between px-6 pt-20 pb-5 z-10">
@@ -86,28 +130,18 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Mobile bottom + Desktop right — video panel */}
+        {/* Mobile bottom + Desktop right — canvas panel */}
         <div className="
-          absolute bottom-0 inset-x-0 h-1/2 bg-white
+          absolute bottom-0 inset-x-0 h-1/2 bg-[#090909]
           lg:top-0 lg:h-full lg:left-[42%] lg:right-0
         ">
-          <video
-            ref={videoRef}
-            src="/francahero2.mp4"
-            muted
-            playsInline
-            preload="metadata"
-            onLoadedMetadata={() => {
-              const v = videoRef.current
-              if (!v) return
-              v.currentTime = 0.001
-              v.play().then(() => v.pause()).catch(() => {})
-            }}
-            className="absolute inset-0 w-full h-full object-cover object-center"
+          <canvas
+            ref={canvasRef}
+            className="absolute inset-0 w-full h-full"
           />
         </div>
 
-        {/* ── DESKTOP: red left panel (42%) ─────────────── */}
+        {/* Desktop: red left panel */}
         <div className="hidden lg:flex absolute inset-y-0 left-0 w-[42%] bg-[#ff462e] flex-col justify-center px-10 xl:pl-[max(2.5rem,calc((100vw-1400px)/2+2.5rem))] pt-28 pb-10">
           <div>
             <p className="text-[0.68rem] text-white/55 font-bold tracking-[0.2em] uppercase mb-8">
@@ -137,10 +171,9 @@ export default function Hero() {
               </a>
             </div>
           </div>
-
         </div>
 
-        {/* ── Desktop scroll indicator ───────────────────── */}
+        {/* Desktop scroll indicator */}
         <motion.div
           style={{ opacity: indicatorOpacity }}
           className="hidden lg:flex absolute bottom-10 right-10 flex-col items-center gap-2 text-[#090909]/35 z-20"
@@ -154,7 +187,7 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* ── Progress bar ───────────────────────────────── */}
+        {/* Progress bar */}
         <div className="absolute bottom-0 left-0 right-0 h-[2px] z-50 hero-progress-track">
           <motion.div
             style={{ width: barWidth }}
