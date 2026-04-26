@@ -1,186 +1,194 @@
 'use client'
 
-import { useRef } from 'react'
-import { motion, useInView, useScroll, useTransform } from 'framer-motion'
+import { useState, useRef } from 'react'
+import { motion, AnimatePresence, useInView } from 'framer-motion'
+import { ArrowUpRight } from '@phosphor-icons/react'
 
 const services = [
   {
     number: '01',
-    title: 'Identità di Brand',
-    description:
-      'Prima di creare, dobbiamo capire. Lavoriamo insieme per trovare la vostra storia, i vostri valori, il vostro punto di vista. L\'obiettivo: rispondere a "Perché esistete?" in modo autentico.',
+    title: 'Perché scegliere voi?',
+    subtitle: 'Identità di Brand',
+    description: 'La maggior parte delle aziende non sa rispondere a questa domanda in modo convincente. Noi costruiamo la risposta — quella che le persone danno di voi quando non siete nella stanza. Un\'identità che si riconosce, si ricorda e si sceglie.',
     tags: ['Posizionamento', 'Naming', 'Identità Visiva', 'Tono di Voce', 'Messaggistica'],
     bg: '#ff462e',
+    text: 'white',
   },
   {
     number: '02',
-    title: 'Produzione Creativa',
-    description:
-      'Film, fotografia, motion graphics e contenuti editoriali pensati per fermare lo scroll — e tenere l\'attenzione abbastanza a lungo da lasciare un segno.',
+    title: 'Contenuti che fermano lo scroll',
+    subtitle: 'Produzione Creativa',
+    description: 'Non basta esserci. Bisogna essere ricordati. Film, fotografia, motion graphics e copywriting pensati per catturare l\'attenzione nei primi 3 secondi — e tenerla abbastanza a lungo da lasciare un segno.',
     tags: ['Film', 'Fotografia', 'Motion Graphics', 'Art Direction', 'Copywriting'],
     bg: '#090909',
+    text: 'white',
   },
   {
     number: '03',
-    title: 'Performance Marketing',
-    description:
-      'La maggior parte delle agenzie ottimizza il budget. Noi ottimizziamo il messaggio — e poi il budget segue. Paid search, paid social e media pensati da chi sa che dietro ogni clic c\'è una persona.',
+    title: 'Budget che torna indietro',
+    subtitle: 'Performance Marketing',
+    description: 'La pubblicità non funziona quando ottimizzi solo il costo per clic. Funziona quando ottimizzi il messaggio dietro al clic. Paid search, paid social e media buying guidati da chi capisce i numeri e le persone — insieme.',
     tags: ['Google Ads', 'Meta Ads', 'Programmatic', 'Analytics', 'CRO'],
     bg: '#ff462e',
+    text: 'white',
   },
   {
     number: '04',
-    title: 'Strategia Editoriale',
-    description:
-      'Contenuti costruiti su ciò che il vostro pubblico cerca davvero — non su quello che suona bene in un brief. Costruiamo fedeltà, non follower.',
+    title: 'Presenti dove conta, con costanza',
+    subtitle: 'Strategia Editoriale',
+    description: 'Il social non si improvvisa. Si costruisce con una strategia, un piano e la disciplina di eseguire ogni settimana. Contenuti pensati per il vostro pubblico — non per accontentare l\'algoritmo.',
     tags: ['SEO', 'Piano Editoriale', 'Social Media', 'Newsletter', 'Thought Leadership'],
     bg: '#090909',
+    text: 'white',
   },
 ]
 
-const CARD_PEEK = 64   // px di ogni card visibile sotto quella superiore
-const NAVBAR_H = 80    // altezza floating navbar
-
-function ServiceCard({
+function ServiceRow({
   service,
-  index,
-  sectionProgress,
+  isActive,
+  onEnter,
+  onLeave,
+  onToggle,
 }: {
-  service: (typeof services)[0]
-  index: number
-  sectionProgress: ReturnType<typeof useScroll>['scrollYProgress']
+  service: typeof services[0]
+  isActive: boolean
+  onEnter: () => void
+  onLeave: () => void
+  onToggle: () => void
 }) {
-  const total = services.length
-  const cardStart = index / total
-  const cardEnd = (index + 1) / total
-
-  // La card scala leggermente verso il basso mentre la successiva la copre
-  const scale = useTransform(
-    sectionProgress,
-    [cardStart, cardEnd],
-    [1, index < total - 1 ? 0.92 : 1]
-  )
-  // Oscuramento progressivo della card sepolta
-  const brightness = useTransform(
-    sectionProgress,
-    [cardStart, cardEnd],
-    [1, index < total - 1 ? 0.6 : 1]
-  )
-
   return (
-    <div
-      className="sticky overflow-hidden px-4 md:px-8"
-      style={{
-        top: `${NAVBAR_H + index * CARD_PEEK}px`,
-        zIndex: index + 1,
-        paddingBottom: index < total - 1 ? `${CARD_PEEK}px` : '0',
-      }}
+    <motion.div
+      onMouseEnter={onEnter}
+      onMouseLeave={onLeave}
+      onClick={onToggle}
+      animate={{ backgroundColor: isActive ? service.bg : '#ffffff' }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      className="cursor-pointer border-b border-[#eaeaea]"
     >
-      <motion.div
-        style={{
-          scale,
-          backgroundColor: service.bg,
-          filter: useTransform(brightness, (v) => `brightness(${v})`),
-        }}
-        className="relative rounded-xl overflow-hidden min-h-[50vh] lg:min-h-[65vh] flex flex-col justify-between shadow-[0_-8px_48px_rgba(0,0,0,0.18)]"
-      >
-        {/* Watermark number — decorativo, solo desktop */}
-        <span
-          aria-hidden="true"
-          className="hidden lg:block absolute select-none pointer-events-none font-bold tracking-tighter leading-none text-white"
-          style={{
-            fontSize: 'clamp(10rem, 22vw, 18rem)',
-            opacity: 0.06,
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-          }}
-        >
-          {service.number}
-        </span>
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
 
-        <div className="p-8 lg:p-14 relative">
-          <span className="text-[0.65rem] font-bold tracking-[0.22em] uppercase text-white/40">
+        {/* Header row */}
+        <div className="flex items-center gap-6 md:gap-10 py-7 md:py-9">
+          <motion.span
+            animate={{ color: isActive ? 'rgba(255,255,255,0.45)' : '#ff462e' }}
+            transition={{ duration: 0.4 }}
+            className="text-[0.65rem] font-bold tracking-[0.2em] shrink-0 hidden md:block"
+          >
             {service.number}
-          </span>
-        </div>
-        <div className="p-8 lg:p-14 relative">
-          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter text-white leading-tight mb-5">
-            {service.title}
-          </h3>
-          <p className="text-white/70 leading-relaxed text-[0.95rem] max-w-[52ch] mb-8">
-            {service.description}
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {service.tags.map((tag) => (
-              <span
-                key={tag}
-                className="text-[0.68rem] bg-white/10 border border-white/20 text-white/80 px-3 py-1.5 rounded-full tracking-[0.04em]"
-              >
-                {tag}
-              </span>
-            ))}
+          </motion.span>
+
+          <div className="flex-1 min-w-0">
+            <motion.div
+              animate={{ color: isActive ? 'rgba(255,255,255,0.5)' : '#6b6b6b' }}
+              transition={{ duration: 0.4 }}
+              className="text-[0.68rem] font-medium tracking-[0.14em] uppercase mb-1"
+            >
+              {service.subtitle}
+            </motion.div>
+            <motion.h3
+              animate={{ color: isActive ? '#ffffff' : '#090909' }}
+              transition={{ duration: 0.4 }}
+              className="text-2xl md:text-3xl lg:text-[2.2rem] font-bold tracking-tighter leading-tight"
+            >
+              {service.title}
+            </motion.h3>
           </div>
+
+          <motion.div
+            animate={{
+              rotate: isActive ? 45 : 0,
+              color: isActive ? '#ffffff' : '#090909',
+            }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="shrink-0"
+          >
+            <ArrowUpRight size={22} weight="bold" />
+          </motion.div>
         </div>
-      </motion.div>
-    </div>
+
+        {/* Expanded content */}
+        <AnimatePresence initial={false}>
+          {isActive && (
+            <motion.div
+              key="content"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+              className="overflow-hidden"
+            >
+              <div className="pb-10 grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-8 md:gap-16">
+                <p className="text-white/75 leading-relaxed text-[0.95rem] max-w-[58ch]">
+                  {service.description}
+                </p>
+                <div className="flex flex-wrap gap-2 content-start">
+                  {service.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-[0.68rem] bg-white/10 border border-white/20 text-white/80 px-3 py-1.5 rounded-full tracking-[0.04em]"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+      </div>
+    </motion.div>
   )
 }
 
 export default function Services() {
-  const sectionRef = useRef(null)
+  const [active, setActive] = useState<number | null>(null)
   const headRef = useRef(null)
   const headInView = useInView(headRef, { once: true, margin: '-80px' })
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end end'],
-  })
-
   return (
-    <section
-      id="services"
-      ref={sectionRef}
-      className="relative"
-      style={{ minHeight: `calc(100vh + ${services.length * 50}vh)` }}
-    >
-      {/* Header — sticky finché le card non la coprono */}
+    <section id="services" className="bg-white">
+
+      {/* Header */}
       <motion.div
         ref={headRef}
         initial={{ opacity: 0, y: 28 }}
         animate={headInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="sticky z-0 bg-white pt-28 pb-16 border-b border-[#eaeaea]"
-        style={{ top: 0 }}
+        className="max-w-7xl mx-auto px-6 md:px-10 pt-28 pb-16 border-b border-[#eaeaea]"
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-10">
-          <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-8 items-end">
-            <div>
-              <span className="text-[0.7rem] text-[#ff462e] font-bold tracking-[0.18em] uppercase mb-5 block">
-                Cosa facciamo
-              </span>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-[#090909] leading-tight">
-                Un metodo<span style={{ color: '#3626A7' }}>.</span><br />Non un elenco di servizi.
-              </h2>
-            </div>
-            <p className="text-[#6b6b6b] leading-relaxed text-[0.95rem]">
-              La strategia informa la creatività. La creatività informa il media. Il media informa la strategia. Il ciclo non si ferma mai.
-            </p>
+        <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-8 items-end">
+          <div>
+            <span className="text-[0.7rem] text-[#ff462e] font-bold tracking-[0.18em] uppercase mb-5 block">
+              Cosa facciamo
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-[#090909] leading-tight">
+              Un metodo<span style={{ color: '#3626A7' }}>.</span><br />Non un elenco di servizi.
+            </h2>
           </div>
+          <p className="text-[#6b6b6b] leading-relaxed text-[0.95rem]">
+            Tutto ciò che facciamo è connesso. La strategia informa la creatività, la creatività informa il media, il media informa la strategia.
+          </p>
         </div>
       </motion.div>
 
-      {/* Cards */}
-      <div className="pt-8">
-        {services.map((service, i) => (
-          <ServiceCard
-            key={service.number}
-            service={service}
-            index={i}
-            sectionProgress={scrollYProgress}
+      {/* Service rows */}
+      <div>
+        {services.map((s, i) => (
+          <ServiceRow
+            key={s.number}
+            service={s}
+            isActive={active === i}
+            onEnter={() => setActive(i)}
+            onLeave={() => setActive(null)}
+            onToggle={() => setActive(active === i ? null : i)}
           />
         ))}
       </div>
+
+      {/* Bottom spacer */}
+      <div className="pb-28" />
+
     </section>
   )
 }
