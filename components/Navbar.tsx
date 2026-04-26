@@ -1,41 +1,19 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { List, X } from '@phosphor-icons/react'
 
 const navLinks = [
-  { label: 'Servizi', href: '#services', id: 'services' },
-  { label: 'Lavori', href: '#work', id: 'work' },
-  { label: 'Chi siamo', href: '#about', id: 'about' },
-  { label: 'Contatti', href: '#contact', id: 'contact' },
+  { label: 'Servizi', href: '#services' },
+  { label: 'Lavori', href: '#work' },
+  { label: 'Chi siamo', href: '#about' },
+  { label: 'Contatti', href: '#contact' },
 ]
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState('')
-
-  useEffect(() => {
-    const observers: IntersectionObserver[] = []
-
-    navLinks.forEach(({ id }) => {
-      const el = document.getElementById(id)
-      if (!el) return
-
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) setActiveSection(id)
-        },
-        { rootMargin: '-50% 0px -50% 0px', threshold: 0 }
-      )
-
-      observer.observe(el)
-      observers.push(observer)
-    })
-
-    return () => observers.forEach((o) => o.disconnect())
-  }, [])
 
   return (
     <>
@@ -58,29 +36,15 @@ export default function Navbar() {
           {/* Desktop nav links */}
           <div className="hidden md:flex items-center">
             <span className="w-px h-4 bg-black/[0.09] mx-1 shrink-0" />
-            {navLinks.map((link) => {
-              const isActive = activeSection === link.id
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`relative text-[0.8rem] px-3.5 py-2.5 rounded-full transition-colors duration-200 whitespace-nowrap ${
-                    isActive
-                      ? 'text-[#090909] font-medium'
-                      : 'text-[#6b6b6b] hover:text-[#090909]'
-                  }`}
-                >
-                  {isActive && (
-                    <motion.span
-                      layoutId="nav-pill"
-                      className="absolute inset-0 rounded-full bg-[#ff462e]"
-                      transition={{ type: 'spring', stiffness: 380, damping: 32 }}
-                    />
-                  )}
-                  <span className="relative z-10">{link.label}</span>
-                </Link>
-              )
-            })}
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-[0.8rem] text-[#6b6b6b] hover:text-[#090909] px-3.5 py-2.5 rounded-full hover:bg-black/[0.04] transition-all duration-200 whitespace-nowrap"
+              >
+                {link.label}
+              </Link>
+            ))}
           </div>
 
           {/* Desktop CTA */}
@@ -137,9 +101,7 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className={`block text-[clamp(2.8rem,12vw,4rem)] font-bold tracking-tighter leading-tight transition-colors py-1 ${
-                      activeSection === link.id ? 'text-[#ff462e]' : 'text-white/50 hover:text-white'
-                    }`}
+                    className="block text-[clamp(2.8rem,12vw,4rem)] font-bold text-white tracking-tighter leading-tight hover:text-white/60 transition-colors py-1"
                   >
                     {link.label}
                   </Link>
