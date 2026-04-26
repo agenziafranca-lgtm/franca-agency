@@ -104,29 +104,31 @@ export default function Hero() {
       <div className="sticky top-0 h-screen overflow-hidden">
 
         {/* Mobile top — orange */}
-        <div className="lg:hidden absolute top-0 inset-x-0 h-[62%] bg-[#ff462e] flex flex-col justify-between px-6 pt-20 pb-5 z-10">
-          <p className="text-[0.62rem] text-white/55 font-bold tracking-[0.2em] uppercase">
+        <div className="lg:hidden absolute top-0 inset-x-0 h-[62%] bg-[#ff462e] flex flex-col justify-center px-6 pt-16 pb-5 z-10">
+          <p className="text-[0.62rem] text-white/55 font-bold tracking-[0.2em] uppercase mb-6">
             Agenzia di Marketing
           </p>
-          <div>
-            <h1 className="text-[clamp(4rem,17vw,6rem)] font-bold tracking-tighter leading-[0.88] mb-6">
-              <span className="text-white">Franca</span>
-              <span style={{ color: '#3626A7' }}>.</span>
-            </h1>
-            <div className="flex gap-2.5">
-              <a
-                href="#work"
-                className="inline-flex items-center gap-1.5 bg-white text-[#090909] px-5 py-2.5 rounded-full text-xs font-bold hover:bg-[#090909] hover:text-white transition-all duration-300 active:scale-[0.98]"
-              >
-                I nostri lavori <ArrowRight size={12} weight="bold" />
-              </a>
-              <a
-                href="#contact"
-                className="inline-flex items-center px-5 py-2.5 rounded-full text-xs font-medium border border-white/30 text-white hover:bg-white/10 transition-all duration-300 active:scale-[0.98]"
-              >
-                Inizia un progetto
-              </a>
-            </div>
+          <h1 className="text-[clamp(3.8rem,16vw,5.5rem)] font-bold tracking-tighter leading-[0.88] mb-4">
+            <span className="text-white">Franca</span>
+            <span style={{ color: '#3626A7' }}>.</span>
+          </h1>
+          <p className="text-white/70 text-[0.82rem] leading-snug mb-7 max-w-[28ch]">
+            La maggior parte del marketing si dimentica in 24 ore.<br />
+            Noi costruiamo brand che restano.
+          </p>
+          <div className="flex gap-2.5">
+            <a
+              href="#work"
+              className="inline-flex items-center gap-1.5 bg-white text-[#090909] px-5 py-2.5 rounded-full text-xs font-bold hover:bg-[#090909] hover:text-white transition-all duration-300 active:scale-[0.98]"
+            >
+              I nostri lavori <ArrowRight size={12} weight="bold" />
+            </a>
+            <a
+              href="#contact"
+              className="inline-flex items-center px-5 py-2.5 rounded-full text-xs font-medium border border-white/30 text-white hover:bg-white/10 transition-all duration-300 active:scale-[0.98]"
+            >
+              Inizia un progetto
+            </a>
           </div>
         </div>
 
