@@ -96,7 +96,8 @@ export default function Hero() {
             src="/francahero2.mp4"
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
+            onLoadedMetadata={() => { if (videoRef.current) videoRef.current.currentTime = 0.001 }}
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
         </div>
