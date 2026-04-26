@@ -142,7 +142,7 @@ export default function Services() {
       id="services"
       ref={sectionRef}
       className="relative"
-      style={{ minHeight: `calc(100vh + ${services.length * 100}vh)` }}
+      style={{ minHeight: `calc(100vh + ${services.length * 50}vh)` }}
     >
       {/* Header — sticky finché le card non la coprono */}
       <motion.div

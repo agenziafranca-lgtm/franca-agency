@@ -18,6 +18,19 @@ const values = [
   },
 ]
 
+const founders = [
+  {
+    name: 'Alessandro Viappiani',
+    role: 'Web & Strategia Digitale',
+    bio: 'Costruisce sistemi che funzionano, misura quello che conta, traduce la tecnologia in vantaggio competitivo.',
+  },
+  {
+    name: 'Matteo Novelli',
+    role: 'ADV, Content & Social',
+    bio: 'Sa cosa spinge le persone a fermarsi, tornare, comprare. Campagne ADV, content strategy, crescita organica.',
+  },
+]
+
 const metrics = [
   { value: '15+', label: 'Brand costruiti' },
   { value: '100k+', label: 'Follower organici senza ads' },
@@ -31,7 +44,8 @@ export default function About() {
   return (
     <section id="about" className="py-28">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-16 lg:gap-24 items-start" ref={ref}>
+        <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-16 lg:gap-20 items-start" ref={ref}>
+
           {/* Left */}
           <motion.div
             initial={{ opacity: 0, y: 32 }}
@@ -47,11 +61,25 @@ export default function About() {
 
             <div className="space-y-5 text-[#6b6b6b] leading-relaxed text-[0.95rem] max-w-[56ch]">
               <p>
-                Franca nasce dalla frustrazione di Alessandro Viappiani e Matteo Novelli per un modo di fare marketing che aveva perso il senso. Eseguire compiti meccanicamente, senza capirne lo scopo. Il pilota automatico professionale.
+                Franca nasce dalla frustrazione di Alessandro e Matteo per un modo di fare marketing che aveva perso il senso. Eseguire compiti meccanicamente, senza capirne lo scopo. Il pilota automatico professionale.
               </p>
-              <p>
-                Alessandro viene dal mondo del web e della strategia digitale: anni a costruire sistemi che funzionano, misurare quello che conta, tradurre la tecnologia in vantaggio competitivo. Matteo dalla parte creativa e media — campagne ADV, content strategy, social. Sa cosa spinge le persone a fermarsi, tornare, comprare.
-              </p>
+            </div>
+
+            {/* Founders cards */}
+            <div className="grid grid-cols-2 gap-3 mt-7 max-w-[56ch]">
+              {founders.map((f) => (
+                <div key={f.name} className="bg-[#f5f5f5] rounded-xl p-5">
+                  <div className="text-[0.62rem] font-bold text-[#ff462e] tracking-[0.15em] uppercase mb-2">
+                    Founder
+                  </div>
+                  <div className="text-[0.88rem] font-bold text-[#090909] mb-0.5">{f.name}</div>
+                  <div className="text-[0.72rem] text-[#ff462e] font-medium mb-2">{f.role}</div>
+                  <p className="text-[0.78rem] text-[#6b6b6b] leading-snug">{f.bio}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="space-y-5 text-[#6b6b6b] leading-relaxed text-[0.95rem] max-w-[56ch] mt-7">
               <p>
                 Siamo in due. Lavoriamo da ovunque. Seguiamo pochi clienti alla volta — quelli con cui ha senso lavorare — e mettiamo la faccia su ogni cosa che firmiamo.
               </p>
@@ -60,6 +88,7 @@ export default function About() {
               </p>
             </div>
 
+            {/* Metrics */}
             <div className="mt-12 pt-8 border-t border-[#eaeaea] grid grid-cols-3 gap-6">
               {metrics.map((m) => (
                 <div key={m.label}>
@@ -73,22 +102,37 @@ export default function About() {
           </motion.div>
 
           {/* Right: valori */}
-          <div className="space-y-0 border-t border-[#eaeaea]">
-            {values.map((v, i) => (
-              <motion.div
-                key={v.label}
-                initial={{ opacity: 0, y: 24 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.15 + i * 0.1 }}
-                className="border-b border-[#eaeaea] py-8"
-              >
-                <div className="text-[0.85rem] font-bold text-[#090909] mb-2">
-                  {v.label}<span style={{ color: '#ff462e' }}>.</span>
-                </div>
-                <p className="text-[0.85rem] text-[#6b6b6b] leading-relaxed">{v.text}</p>
-              </motion.div>
-            ))}
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+          >
+            <span className="text-[0.7rem] text-[#ff462e] font-bold tracking-[0.18em] uppercase mb-8 block">
+              Come lavoriamo
+            </span>
+            <div className="divide-y divide-[#eaeaea] border-t border-[#eaeaea]">
+              {values.map((v, i) => (
+                <motion.div
+                  key={v.label}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 + i * 0.1 }}
+                  className="py-7 flex gap-5"
+                >
+                  <span className="text-[0.6rem] font-bold text-[#ff462e] tracking-[0.1em] mt-0.5 shrink-0">
+                    0{i + 1}
+                  </span>
+                  <div>
+                    <div className="text-[0.85rem] font-bold text-[#090909] mb-2">
+                      {v.label}
+                    </div>
+                    <p className="text-[0.82rem] text-[#6b6b6b] leading-relaxed">{v.text}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
         </div>
       </div>
     </section>

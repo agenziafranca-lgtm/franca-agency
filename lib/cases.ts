@@ -232,9 +232,9 @@ export const cases: CaseStudy[] = [
     client: 'Theraflux',
     category: 'Brand Identity + Merchandise',
     tagline: 'Un brand che si vede anche quando sei offline.',
-    cardImage: '/clients/theraflux/cover.jpg',
-    heroImage: '/clients/theraflux/cover.jpg',
-    images: ['/clients/theraflux/02.jpg', '/clients/theraflux/03.jpg'],
+    cardImage: '/clients/theraflux/spille-01.png',
+    heroImage: '/clients/theraflux/spille-01.png',
+    images: ['/clients/theraflux/spille-01.png', '/clients/theraflux/spille-02.png', '/clients/theraflux/website-screenshot.png'],
     services: ['Brand identity', 'Progettazione merchandise', 'Grafica applicativi', 'Preventivo e produzione stampa'],
     challenge: 'Theraflux lavora nel settore del benessere con macchinari e trattamenti di qualità. Il problema era la percezione: online e offline, i materiali di comunicazione non rispecchiavano il livello del servizio. Logo improvvisato, materiali disomogenei, nessuna identità riconoscibile. Difficile farsi prendere sul serio quando la prima cosa che vedi non ispira fiducia.',
     approach: [
