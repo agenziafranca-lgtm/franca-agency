@@ -235,7 +235,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
               </h2>
             </div>
             <a
-              href="mailto:mail@agenziafranca.it"
+              href="/#contact"
               className="inline-flex items-center gap-2 bg-[#090909] text-white px-8 py-4 rounded-full text-sm font-bold hover:bg-[#ff462e] transition-all duration-300 shrink-0"
             >
               Inizia un progetto
