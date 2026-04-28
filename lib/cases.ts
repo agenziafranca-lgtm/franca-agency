@@ -6,6 +6,7 @@ export interface CaseStudy {
   cardImage: string
   heroImage: string
   images: string[]
+  liveUrl?: string
   services: string[]
   challenge: string
   approach: string[]
@@ -235,6 +236,7 @@ export const cases: CaseStudy[] = [
     cardImage: '/clients/theraflux/cover-franca.png',
     heroImage: '/clients/theraflux/cover-franca.png',
     images: ['/clients/theraflux/spille-01.png', '/clients/theraflux/spille-02.png', '/clients/theraflux/website-screenshot.png'],
+    liveUrl: 'https://theraflux.it',
     services: ['Brand identity', 'Progettazione merchandise', 'Grafica applicativi', 'Preventivo e produzione stampa'],
     challenge: 'Theraflux lavora nel settore del benessere con macchinari e trattamenti di qualità. Il problema era la percezione: online e offline, i materiali di comunicazione non rispecchiavano il livello del servizio. Logo improvvisato, materiali disomogenei, nessuna identità riconoscibile. Difficile farsi prendere sul serio quando la prima cosa che vedi non ispira fiducia.',
     approach: [
@@ -294,6 +296,42 @@ export const cases: CaseStudy[] = [
       {
         section: 'Il progetto continuo',
         text: 'La Pro Loco aggiorna il portale con le novità del territorio — nuove attività, nuovi eventi, cambi di orario. Il database è stato costruito per rendere questi aggiornamenti semplici e veloci, senza bisogno di interventi tecnici.',
+      },
+    ],
+  },
+  {
+    slug: 'ibiza-my-mood',
+    client: 'Ibiza My Mood',
+    category: 'Sviluppo Web',
+    tagline: 'Ibiza con voce d\'autore.',
+    cardImage: '/clients/ibiza-my-mood/cover-franca.png',
+    heroImage: '/clients/ibiza-my-mood/cover-franca.png',
+    images: [],
+    liveUrl: 'https://ibizamymood.com',
+    services: ['Sviluppo sito web', 'Architettura informativa', 'UX/UI design', 'Performance e SEO tecnico'],
+    challenge: 'Federica Di Gregorio ha costruito una community fedele su Instagram intorno alla sua passione per Ibiza — non come destinazione turistica generica, ma come isola con una sua precisa anima, da vivere bene. Quando ci siamo incontrati il problema era chiaro: il pubblico la cercava, voleva i suoi consigli, voleva prenotare le esperienze che lei suggeriva. Ma c\'era solo un profilo Instagram. Niente di strutturato, niente di duraturo.',
+    approach: [
+      'Il primo passo è stato non snaturare. Federica ha un\'estetica sua — pulita, editoriale, decisa. Il sito non doveva sembrare l\'ennesimo travel blog: doveva sembrare un\'estensione naturale del suo modo di curare l\'isola.',
+      'Abbiamo strutturato l\'esperienza utente intorno a tre pilastri precisi: cosa serve concretamente per vivere Ibiza (Servizi), cosa succede sull\'isola in stagione (Calendario Party), e cosa solo un local conosce (Guida all\'Isola). Tre porte d\'ingresso al brand, una per ogni tipologia di visitatore.',
+      'Tipograficamente, il sito è costruito intorno a una grande parola che si scrive a schermo — "ESPLORA" — perché è esattamente quello che fanno le persone quando arrivano. Niente immagini tipiche da agenzia di viaggi: solo carattere, parole, e un design che fa respirare.',
+    ],
+    results: [
+      { value: '3', label: 'Pilastri di contenuto strutturati' },
+      { value: '100%', label: 'Mobile-first, ottimizzato per chi pianifica dal feed' },
+      { value: 'Sito', label: 'Lanciato in tempo per la stagione 2026' },
+    ],
+    body: [
+      {
+        section: 'Un\'estetica trasferibile',
+        text: 'Il brand di Federica è nato sui social — è già visivamente riconoscibile. Il nostro lavoro è stato traslare quel linguaggio in un mezzo diverso senza tradurlo male. Tipografia serif decisa, palette pulita di blu mediterraneo e bianco, assenza di stock photography. Su Instagram funziona perché è autentico; sul sito funziona perché è coerente.',
+      },
+      {
+        section: 'Tre pilastri, un ingresso',
+        text: 'La struttura del sito non è una vetrina di servizi: è un percorso. Chi arriva può entrare da Servizi se sa già cosa vuole prenotare, da Calendario se è qui per i party, o da Guida se vuole semplicemente scoprire l\'isola. Tre porte aperte, un brand sotto. Questo permette di parlare a tre tipi di viaggiatore senza diluire il messaggio.',
+      },
+      {
+        section: 'Performance e mobile-first',
+        text: 'Il pubblico di Federica scrolla da mobile, scopre il sito su mobile, prenota da mobile. Ogni decisione tecnica è stata presa partendo da lì: caricamento veloce, immagini ottimizzate, layout che funziona con il pollice prima ancora che con il mouse. Il desktop è arrivato dopo, come conseguenza, non come priorità.',
       },
     ],
   },

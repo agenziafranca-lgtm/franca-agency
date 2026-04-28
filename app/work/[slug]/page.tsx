@@ -96,6 +96,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         category={c.category}
         client={c.client}
         tagline={c.tagline}
+        liveUrl={c.liveUrl}
       />
 
       {/* ── Servizi + Risultati — bianco ──────────────── */}

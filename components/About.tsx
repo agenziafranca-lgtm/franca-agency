@@ -53,7 +53,7 @@ export default function About() {
   const manifestoInView = useInView(manifestoRef, { once: true, margin: '-100px' })
 
   return (
-    <section id="about" className="py-28">
+    <section id="about" className="pt-28">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-16 lg:gap-20 items-start">
 
@@ -146,8 +146,11 @@ export default function About() {
 
         </div>
 
-        {/* ── Manifesto closer ────────────────────────── */}
-        <div ref={manifestoRef} className="mt-24 lg:mt-32 pt-12 border-t border-[#eaeaea]">
+      </div>
+
+      {/* ── Manifesto closer — full-bleed dark band ──── */}
+      <div ref={manifestoRef} className="mt-24 lg:mt-32 bg-[#090909] py-24 lg:py-32">
+        <div className="max-w-7xl mx-auto px-6 md:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_4fr] gap-8 lg:gap-16 items-end">
             <motion.span
               initial={{ opacity: 0, x: -16 }}
@@ -162,7 +165,7 @@ export default function About() {
               initial={{ opacity: 0, y: 28 }}
               animate={manifestoInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-              className="text-[clamp(2.4rem,6vw,5rem)] font-bold tracking-tighter text-[#090909] leading-[1.02]"
+              className="text-[clamp(2.4rem,6vw,5rem)] font-bold tracking-tighter text-white leading-[1.02]"
             >
               Non è per tutti<span style={{ color: '#ff462e' }}>.</span><br />
               <span className="italic font-medium">E va benissimo così</span>
@@ -170,7 +173,6 @@ export default function About() {
             </motion.p>
           </div>
         </div>
-
       </div>
     </section>
   )
