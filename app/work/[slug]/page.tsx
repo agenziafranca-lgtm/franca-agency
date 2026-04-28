@@ -143,42 +143,6 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           </div>
         </div>
 
-        {/* Image gallery */}
-        {c.images.length > 0 && (
-          <div className="py-20 border-b border-[#eaeaea]">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {c.images.map((src, i) => {
-                const isBrowserMockup = src.includes('website-screenshot')
-                return isBrowserMockup ? (
-                  <div key={i} className="rounded-2xl overflow-hidden bg-[#1e1e1e] shadow-xl md:col-span-2">
-                    {/* Browser chrome */}
-                    <div className="flex items-center gap-2 px-4 py-3 bg-[#2a2a2a] border-b border-white/10">
-                      <span className="w-3 h-3 rounded-full bg-[#ff5f57]" />
-                      <span className="w-3 h-3 rounded-full bg-[#febc2e]" />
-                      <span className="w-3 h-3 rounded-full bg-[#28c840]" />
-                      <div className="flex-1 mx-4 bg-[#3a3a3a] rounded-md px-3 py-1 text-[0.7rem] text-white/40 font-mono">
-                        theraflux.it
-                      </div>
-                    </div>
-                    <img
-                      src={src}
-                      alt={`${c.client} — sito web`}
-                      className="w-full h-auto block"
-                    />
-                  </div>
-                ) : (
-                  <div key={i} className="aspect-[4/3] overflow-hidden rounded-2xl bg-[#eaeaea]">
-                    <img
-                      src={src}
-                      alt={`${c.client} — immagine progetto ${i + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        )}
 
         {/* Body sections */}
         <div className="py-20 space-y-0">
