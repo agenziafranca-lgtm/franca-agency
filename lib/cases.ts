@@ -39,16 +39,16 @@ export const cases: CaseStudy[] = [
     ],
     body: [
       {
-        section: 'Il problema',
-        text: 'Lo studio aveva un problema classico del settore legale: grande competenza, comunicazione da addetti ai lavori. I contenuti erano corretti — ma per un pubblico che già sapeva tutto. Chi avrebbe dovuto trovarli utili, smetteva di leggere dopo il primo paragrafo.',
+        section: 'Il pubblico vero',
+        text: 'L\'errore più comune negli studi legali è scrivere come se tutti i lettori fossero avvocati. Esse-CI parlava a colleghi quando avrebbe dovuto parlare a chi cerca risposte: imprenditori che gestiscono dati personali, lavoratori da remoto che non sanno se la loro firma vale davvero, professionisti che hanno costruito un patrimonio digitale senza mai aver pensato all\'eredità. Abbiamo riscritto ogni piano editoriale partendo da una domanda: chi ha bisogno di sapere questa cosa, e perché? La risposta ha cambiato tutto — il tono, la lunghezza, le parole, persino le piattaforme.',
       },
       {
-        section: 'L\'approccio',
-        text: 'Abbiamo costruito una strategia editoriale basata su un principio semplice: prima di pubblicare qualcosa, chiedersi "a chi serve davvero?". Ogni tema legale è stato reinterpretato attraverso situazioni reali — aziende che trattano dati, lavoratori da remoto, professionisti con un patrimonio digitale da proteggere.',
+        section: 'I format trasformati',
+        text: 'Le live di un\'ora su temi tecnici sono diventate pillole verticali sui dubbi reali: "Posso licenziare per un post su Facebook?", "Le mie chat WhatsApp sono prove valide?". Gli articoli pieni di rimandi normativi sono diventati storie che partono da un caso concreto e arrivano alla regola. La newsletter mensile "Privacy Today" è stata ridisegnata per essere letta in cinque minuti durante un caffè — non archiviata insieme alle circolari aziendali. Stessa competenza, modo di consegnarla completamente diverso.',
       },
       {
-        section: 'Il risultato',
-        text: 'Esse-CI non è più uno studio legale che pubblica contenuti. È diventato un punto di riferimento per chi vuole capire come il diritto digitale impatta sulla vita e sul lavoro — spiegato da persone che lo vivono ogni giorno.',
+        section: 'Il nuovo posizionamento',
+        text: 'Sei mesi dopo, Esse-CI non viene più cercato per "avvocato a [città]". Viene cercato per nome. Le aziende lo contattano dopo aver letto un post o ascoltato una pillola, non dopo una ricerca SEO. Gli stessi argomenti che prima riempivano lo studio di silenzio ora generano commenti, condivisioni, richieste di consulenza specifiche. La differenza non è stata fare più contenuti — è stata farli per qualcuno di preciso.',
       },
     ],
   },
@@ -74,16 +74,16 @@ export const cases: CaseStudy[] = [
     ],
     body: [
       {
-        section: 'Il problema',
-        text: 'Comprare follower è il sintomo di un equivoco: pensare che il numero conti più della relazione. Domenico aveva un pubblico finto su un profilo vero. La sua bravura era reale, ma nessuno la vedeva — perché stava comunicando nella direzione sbagliata.',
+        section: 'La community ricostruita',
+        text: 'La prima cosa fatta è stata fermare l\'emorragia: niente più follower comprati. La seconda è stata accettare che i numeri sarebbero scesi prima di risalire — e farsene una ragione. Abbiamo ripulito il profilo, rifatto la bio, riscritto la presentazione. Ogni post nuovo era pensato per essere visto da meno persone ma da quelle giuste. Le interazioni sono cresciute prima dei follower. Le persone hanno iniziato a commentare, a chiedere, a dire "quando torni in zona?". Quello è il momento in cui esiste una community.',
       },
       {
-        section: 'L\'approccio',
-        text: 'Abbiamo costruito un racconto. Domenico non vende tagli — porta le persone con lui. Buenos Aires, il Golden Gate, la savana del Kenya, le scuole in Africa. Ogni posto è diventato un set, ogni taglio una storia. La community ha iniziato a chiedersi "dove sei ora?" invece di "quanto costa?".',
+        section: 'Il barbiere viaggiatore',
+        text: 'Domenico va in Argentina e fa tagli a Buenos Aires. Va in Kenya e taglia i capelli ai bambini di una scuola. Va in Egitto e lavora davanti alle piramidi. Ogni viaggio è diventato un capitolo del racconto — non un evento sponsorizzato, non un set finto. La qualità del barbiere è la stessa che farebbe nel suo negozio di provincia. Ma il contesto cambia tutto. Il mestiere non vende più "un servizio": vende "partecipare a una storia". E le persone vogliono partecipare alle storie più che comprare servizi.',
       },
       {
-        section: 'Il risultato',
-        text: 'Gamma+ ha iniziato a chiamarlo per i propri eventi internazionali. Giocatori di Serie A e atleti nazionali vanno da lui — non per comprare un taglio, ma per far parte della sua storia. Domenico oggi non ha clienti: ha persone che vogliono viaggiare con lui.',
+        section: 'I risultati che restano',
+        text: 'Gamma+ ha smesso di trattarlo come uno qualunque — lo chiama agli eventi internazionali. I giocatori di Serie A che frequentano la zona vanno da lui non per il taglio, ma per fare parte del suo racconto. I follower comprati anni fa sono stati silenziati dall\'algoritmo; quelli arrivati con il nuovo approccio commentano ogni post. Domenico oggi non ha clienti: ha persone che decidono dove vogliono essere quando si fanno tagliare i capelli.',
       },
     ],
   },

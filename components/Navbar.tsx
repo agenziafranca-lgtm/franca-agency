@@ -81,7 +81,7 @@ export default function Navbar() {
           <div className="hidden md:block ml-1 pr-1.5">
             <Link
               href="#contact"
-              className="inline-block text-[0.8rem] font-bold bg-[#090909] text-white px-4 py-2 rounded-full hover:bg-[#ff462e] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] whitespace-nowrap"
+              className="inline-block text-[0.8rem] font-bold bg-[#090909] text-white px-4 py-2.5 rounded-full hover:bg-[#ff462e] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] whitespace-nowrap"
             >
               Inizia un progetto
             </Link>

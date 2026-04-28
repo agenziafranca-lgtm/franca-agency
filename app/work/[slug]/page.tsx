@@ -6,6 +6,7 @@ import Counter from '@/components/Counter'
 import CaseStudyHero from '@/components/CaseStudyHero'
 import ReadingProgress from '@/components/ReadingProgress'
 import RevealSection from '@/components/RevealSection'
+import CaseStudyNav from '@/components/CaseStudyNav'
 
 export function generateStaticParams() {
   return cases.map((c) => ({ slug: c.slug }))
@@ -41,8 +42,13 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   const c = getCaseBySlug(slug)
   if (!c) notFound()
 
-  // Altri 3 casi studio correlati (esclude il corrente)
   const related = cases.filter((x) => x.slug !== c.slug).slice(0, 3)
+
+  const chapters = [
+    { id: 'challenge', label: 'La sfida' },
+    { id: 'approach', label: "L'approccio" },
+    ...c.body.map((b, i) => ({ id: `body-${i}`, label: b.section })),
+  ]
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -71,8 +77,9 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
 
       <ReadingProgress />
+      <CaseStudyNav chapters={chapters} />
 
-      {/* ── Back link ───────────────────────────────────── */}
+      {/* ── Back link ──────────────────────────────────── */}
       <div className="fixed top-5 left-5 z-50">
         <Link
           href="/#work"
@@ -83,7 +90,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         </Link>
       </div>
 
-      {/* ── Hero con parallax + ken-burns ──────────────── */}
+      {/* ── Hero ───────────────────────────────────────── */}
       <CaseStudyHero
         image={c.heroImage}
         category={c.category}
@@ -91,23 +98,23 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         tagline={c.tagline}
       />
 
-      {/* ── Content ─────────────────────────────────────── */}
-      <div className="max-w-7xl mx-auto px-6 md:px-10">
-
-        {/* Services + Results */}
-        <RevealSection className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-12 py-20 border-b border-[#eaeaea]">
-          <div>
-            <p className="text-[0.65rem] text-[#ff462e] font-bold tracking-[0.2em] uppercase mb-6">Servizi</p>
-            <ul className="space-y-2">
-              {c.services.map((s) => (
-                <li key={s} className="text-[0.9rem] text-[#090909] font-medium flex items-center gap-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#ff462e] shrink-0" />
-                  {s}
-                </li>
-              ))}
-            </ul>
+      {/* ── Servizi + Risultati — bianco ──────────────── */}
+      <section className="bg-white border-b border-[#eaeaea]">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 py-20 grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-12">
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <RevealSection>
+              <p className="text-[0.65rem] text-[#ff462e] font-bold tracking-[0.2em] uppercase mb-6">Servizi</p>
+              <ul className="space-y-2">
+                {c.services.map((s) => (
+                  <li key={s} className="text-[0.9rem] text-[#090909] font-medium flex items-center gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#ff462e] shrink-0" />
+                    {s}
+                  </li>
+                ))}
+              </ul>
+            </RevealSection>
           </div>
-          <div>
+          <RevealSection delay={0.1}>
             <p className="text-[0.65rem] text-[#ff462e] font-bold tracking-[0.2em] uppercase mb-6">Risultati</p>
             <div className="grid grid-cols-3 gap-8">
               {c.results.map((r) => (
@@ -120,43 +127,106 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                 </div>
               ))}
             </div>
+          </RevealSection>
+        </div>
+      </section>
+
+      {/* ── Sfida — grigio chiaro full-bleed ─────────── */}
+      <section id="challenge" className="bg-[#f5f5f5]">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 py-24 lg:py-28 grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12">
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <RevealSection>
+              <span className="text-[0.65rem] text-[#ff462e] font-bold tracking-[0.2em] uppercase block mb-3">Capitolo 01</span>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tighter text-[#090909] leading-tight">
+                La sfida<span style={{ color: '#ff462e' }}>.</span>
+              </h2>
+            </RevealSection>
           </div>
-        </RevealSection>
+          <RevealSection delay={0.1}>
+            <p className="text-[1.1rem] text-[#090909]/75 leading-relaxed max-w-[62ch]">{c.challenge}</p>
+          </RevealSection>
+        </div>
+      </section>
 
-        {/* Challenge */}
-        <RevealSection className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 py-20 border-b border-[#eaeaea]">
-          <p className="text-[0.65rem] text-[#ff462e] font-bold tracking-[0.2em] uppercase">La sfida</p>
-          <p className="text-[1.05rem] text-[#6b6b6b] leading-relaxed max-w-[62ch]">{c.challenge}</p>
-        </RevealSection>
-
-        {/* Approach */}
-        <RevealSection className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 py-20 border-b border-[#eaeaea]">
-          <p className="text-[0.65rem] text-[#ff462e] font-bold tracking-[0.2em] uppercase">L&apos;approccio</p>
-          <div className="space-y-6">
+      {/* ── Approccio — bianco con paragrafi numerati ── */}
+      <section id="approach" className="bg-white">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 py-24 lg:py-28 grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12">
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <RevealSection>
+              <span className="text-[0.65rem] text-[#ff462e] font-bold tracking-[0.2em] uppercase block mb-3">Capitolo 02</span>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tighter text-[#090909] leading-tight">
+                L&apos;approccio<span style={{ color: '#ff462e' }}>.</span>
+              </h2>
+            </RevealSection>
+          </div>
+          <div className="space-y-10">
             {c.approach.map((p, i) => (
-              <p key={i} className="text-[1.05rem] text-[#6b6b6b] leading-relaxed max-w-[62ch]">{p}</p>
+              <RevealSection key={i} delay={0.1 + i * 0.08}>
+                <div className="flex gap-5 lg:gap-7 max-w-[62ch]">
+                  <span className="text-[0.65rem] font-bold text-[#ff462e] tracking-[0.18em] mt-2 shrink-0">
+                    0{i + 1}
+                  </span>
+                  <p className="text-[1.05rem] text-[#6b6b6b] leading-relaxed">{p}</p>
+                </div>
+              </RevealSection>
             ))}
           </div>
-        </RevealSection>
+        </div>
+      </section>
 
-        {/* Body sections */}
-        <div className="py-20 space-y-0">
-          {c.body.map((b) => (
-            <RevealSection
-              key={b.section}
-              className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 py-14 border-b border-[#eaeaea]"
-            >
-              <h2 className="text-[1rem] font-bold text-[#090909]">
-                {b.section}<span style={{ color: '#ff462e' }}>.</span>
-              </h2>
+      {/* ── Pull quote — DARK full-bleed ──────────────── */}
+      <section className="bg-[#090909] text-white">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 py-32 lg:py-40">
+          <RevealSection>
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_4fr] gap-8 lg:gap-16 items-start">
+              <span className="text-[0.65rem] text-[#ff462e] font-bold tracking-[0.2em] uppercase">In una frase</span>
+              <div>
+                <span className="text-[#ff462e] text-5xl lg:text-7xl font-bold leading-none block mb-4 italic">&ldquo;</span>
+                <p className="text-[clamp(1.8rem,4.4vw,3.6rem)] font-bold tracking-tighter text-white leading-[1.08] italic">
+                  {c.tagline}
+                </p>
+              </div>
+            </div>
+          </RevealSection>
+        </div>
+      </section>
+
+      {/* ── Body sections — bianco con chapter numbers ── */}
+      {c.body.map((b, i) => (
+        <section
+          key={b.section}
+          id={`body-${i}`}
+          className={i % 2 === 0 ? 'bg-white' : 'bg-[#fafafa]'}
+        >
+          <div className="max-w-7xl mx-auto px-6 md:px-10 py-20 lg:py-24 grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 border-b border-[#eaeaea]">
+            <div className="lg:sticky lg:top-28 lg:self-start">
+              <RevealSection>
+                <span
+                  className="text-[clamp(4.5rem,8vw,7rem)] font-bold tracking-tighter leading-none block"
+                  style={{ color: 'rgba(255,70,46,0.18)' }}
+                  aria-hidden="true"
+                >
+                  0{i + 3}
+                </span>
+                <span className="text-[0.65rem] text-[#ff462e] font-bold tracking-[0.2em] uppercase block mt-3 mb-2">
+                  Capitolo 0{i + 3}
+                </span>
+                <h2 className="text-2xl md:text-3xl font-bold tracking-tighter text-[#090909] leading-tight">
+                  {b.section}<span style={{ color: '#ff462e' }}>.</span>
+                </h2>
+              </RevealSection>
+            </div>
+            <RevealSection delay={0.1}>
               <p className="text-[1.05rem] text-[#6b6b6b] leading-relaxed max-w-[62ch]">{b.text}</p>
             </RevealSection>
-          ))}
-        </div>
+          </div>
+        </section>
+      ))}
 
-        {/* Related case studies — link interni */}
-        {related.length > 0 && (
-          <RevealSection className="py-20 border-t border-[#eaeaea]">
+      {/* ── Related case studies — grigio ─────────────── */}
+      {related.length > 0 && (
+        <section className="bg-[#f5f5f5]">
+          <RevealSection className="max-w-7xl mx-auto px-6 md:px-10 py-24">
             <p className="text-[0.65rem] text-[#ff462e] font-bold tracking-[0.2em] uppercase mb-10">
               Altri lavori
             </p>
@@ -165,7 +235,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                 <Link
                   key={r.slug}
                   href={`/work/${r.slug}`}
-                  className="group block overflow-hidden rounded-2xl bg-[#eaeaea]"
+                  className="group block overflow-hidden rounded-2xl bg-white"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <img
@@ -183,10 +253,12 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
               ))}
             </div>
           </RevealSection>
-        )}
+        </section>
+      )}
 
-        {/* CTA */}
-        <RevealSection className="py-24 border-t border-[#eaeaea]">
+      {/* ── CTA — bianco ───────────────────────────────── */}
+      <section className="bg-white border-t border-[#eaeaea]">
+        <RevealSection className="max-w-7xl mx-auto px-6 md:px-10 py-24">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-10">
             <div>
               <p className="text-[0.65rem] text-[#ff462e] font-bold tracking-[0.2em] uppercase mb-4">
@@ -204,8 +276,8 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             </a>
           </div>
         </RevealSection>
+      </section>
 
-      </div>
     </main>
   )
 }

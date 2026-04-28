@@ -76,6 +76,17 @@ body::after {
   display: none;
 }
 
+/* Custom cursor: nasconde quello di sistema mantenendo l'I-beam sui form */
+.custom-cursor-active,
+.custom-cursor-active * {
+  cursor: none !important;
+}
+.custom-cursor-active input,
+.custom-cursor-active textarea,
+.custom-cursor-active select {
+  cursor: text !important;
+}
+
 /* Hero progress bar — colore adattivo al pannello sottostante */
 .hero-progress-fill {
   background-color: #ff462e;
