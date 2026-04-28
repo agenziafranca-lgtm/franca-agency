@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     template: "%s — Franca.",
   },
   description:
-    "Trasformiamo aziende in brand di cui innamorarsi. Non facciamo compitini — costruiamo Brand. Scopri come lavoriamo.",
+    "Agenzia di marketing per aziende che vogliono distinguersi. Strategia, contenuti, siti web, ADV e gestione social — pensati su misura, non in serie.",
   keywords: [
     "agenzia marketing",
     "brand strategy",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     siteName: "Franca.",
     title: "Franca. — Agenzia di Marketing",
     description:
-      "Trasformiamo aziende in brand di cui innamorarsi. Non facciamo compitini — costruiamo Brand.",
+      "Agenzia di marketing per aziende che vogliono distinguersi. Strategia, contenuti, siti web, ADV e gestione social.",
     images: [
       {
         url: "/opengraph-image",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Franca. — Agenzia di Marketing",
-    description: "Trasformiamo aziende in brand di cui innamorarsi.",
+    description: "Agenzia di marketing per aziende che vogliono distinguersi davvero.",
     images: ["/opengraph-image"],
   },
   robots: {

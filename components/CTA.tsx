@@ -6,7 +6,7 @@ import { ArrowRight, X } from '@phosphor-icons/react'
 import TextReveal from './TextReveal'
 
 const serviziOptions = [
-  { label: 'Costruire il mio brand', sub: 'logo, naming, identità visiva' },
+  { label: 'Posizionarmi nel mio mercato', sub: 'logo, naming, identità, tono di voce' },
   { label: 'Foto, video e contenuti', sub: 'produzione creativa' },
   { label: 'Fare pubblicità online', sub: 'Google, Meta, social ads' },
   { label: 'Gestire i miei social', sub: 'strategia e piano editoriale' },

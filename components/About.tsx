@@ -164,7 +164,7 @@ export default function About() {
               transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
               className="text-[clamp(2.4rem,6vw,5rem)] font-bold tracking-tighter text-[#090909] leading-[1.02]"
             >
-              Non è per tutti<span style={{ color: '#ff462e' }}>.</span>{' '}
+              Non è per tutti<span style={{ color: '#ff462e' }}>.</span><br />
               <span className="italic font-medium">E va benissimo così</span>
               <span style={{ color: '#3626A7' }}>.</span>
             </motion.p>

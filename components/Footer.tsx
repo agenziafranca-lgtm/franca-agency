@@ -38,7 +38,7 @@ export default function Footer() {
               <span style={{ color: '#ff462e' }}>Franca</span><span style={{ color: '#3626A7' }}>.</span>
             </div>
             <p className="text-[0.85rem] text-[#6b6b6b] leading-relaxed max-w-[28ch]">
-              Costruiamo brand che restano. Per pochi clienti alla volta, da ovunque — con la faccia su ogni cosa che firmiamo.
+              Marketing che parte dalla strategia, non dal template.
             </p>
           </div>
 

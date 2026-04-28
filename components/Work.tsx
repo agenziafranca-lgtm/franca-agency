@@ -35,7 +35,7 @@ export default function Work() {
             Lavori selezionati
           </span>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-[#090909] leading-tight">
-            Brand costruiti<br />insieme<span style={{ color: '#3626A7' }}>.</span>
+            Lavori che ci<br />somigliano<span style={{ color: '#3626A7' }}>.</span>
           </h2>
         </motion.div>
 
