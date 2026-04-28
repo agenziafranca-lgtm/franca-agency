@@ -76,6 +76,11 @@ body::after {
   display: none;
 }
 
+/* Preloader: nasconde la pagina sotto fino al termine dell'animazione */
+html.preloader-active #page-content {
+  visibility: hidden;
+}
+
 /* Custom cursor: nasconde quello di sistema mantenendo l'I-beam sui form */
 .custom-cursor-active,
 .custom-cursor-active * {

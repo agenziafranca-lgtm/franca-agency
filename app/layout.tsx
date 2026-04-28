@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import CustomCursor from "@/components/CustomCursor"
+import Preloader from "@/components/Preloader"
 import { Analytics } from "@vercel/analytics/next"
 
 const inter = Inter({
@@ -76,8 +77,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="it" className={inter.variable}>
       <body className="antialiased">
+        {/* Pre-hydration: nasconde il contenuto se il preloader deve apparire,
+            evita il flash della pagina prima che React monti */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{if(!sessionStorage.getItem('franca-preloader-seen'))document.documentElement.classList.add('preloader-active')}catch(e){}})()`,
+          }}
+        />
+        <Preloader />
         <CustomCursor />
-        {children}
+        <div id="page-content">{children}</div>
         <Analytics />
       </body>
     </html>
