@@ -26,6 +26,10 @@ export default function Hero() {
   const ctasOpacity = useTransform(scrollProgress, [0.30, 0.48], [0, 1])
   const ctasY = useTransform(scrollProgress, [0.30, 0.48], [12, 0])
   const mobileScrollHintOpacity = useTransform(scrollProgress, [0, 0.04], [1, 0])
+  // Franca H1 — parte grande e si rimpicciolisce mentre gli altri elementi appaiono
+  const mobileH1Scale = useTransform(scrollProgress, [0, 0.45], [1.55, 1])
+  const desktopH1Scale = useTransform(scrollProgress, [0, 0.45], [1.35, 1])
+  const desktopH1X = useTransform(scrollProgress, [0, 0.45], ['5vw', '0vw'])
 
   const drawFrame = (index: number) => {
     const canvas = canvasRef.current
@@ -120,10 +124,13 @@ export default function Hero() {
           >
             Agenzia di Marketing
           </motion.p>
-          <h1 className="text-[clamp(3.8rem,16vw,5.5rem)] font-bold tracking-tighter leading-[0.88] mb-4">
+          <motion.h1
+            style={{ scale: mobileH1Scale, transformOrigin: '0% 50%' }}
+            className="text-[clamp(3.8rem,16vw,5.5rem)] font-bold tracking-tighter leading-[0.88] mb-4"
+          >
             <span className="text-white">Franca</span>
             <span style={{ color: '#3626A7' }}>.</span>
-          </h1>
+          </motion.h1>
           <motion.p
             style={{ opacity: subtitleOpacity, y: subtitleY }}
             className="text-white/70 text-[0.82rem] leading-snug mb-7 max-w-[28ch]"
@@ -176,20 +183,32 @@ export default function Hero() {
         </div>
 
         {/* Desktop: red left panel */}
-        <div className="hidden lg:flex absolute inset-y-0 left-0 w-[42%] bg-[#ff462e] flex-col justify-center px-10 xl:pl-[max(2.5rem,calc((100vw-1400px)/2+2.5rem))] pt-28 pb-10">
+        <div className="hidden lg:flex absolute inset-y-0 left-0 w-[42%] bg-[#ff462e] flex-col justify-center px-10 xl:px-14 pt-28 pb-10">
           <div>
-            <p className="text-[0.68rem] text-white/55 font-bold tracking-[0.2em] uppercase mb-8">
+            <motion.p
+              style={{ opacity: labelOpacity, y: labelY }}
+              className="text-[0.68rem] text-white/55 font-bold tracking-[0.2em] uppercase mb-8"
+            >
               Agenzia di Marketing
-            </p>
-            <h1 className="text-[clamp(4.5rem,8vw,9rem)] font-bold tracking-tighter leading-[0.88] mb-6">
+            </motion.p>
+            <motion.h1
+              style={{ scale: desktopH1Scale, x: desktopH1X, transformOrigin: '50% 50%' }}
+              className="text-[clamp(4.5rem,8vw,9rem)] font-bold tracking-tighter leading-[0.88] mb-6"
+            >
               <span className="text-white">Franca</span>
               <span style={{ color: '#3626A7' }}>.</span>
-            </h1>
-            <p className="text-white/70 text-[1rem] leading-snug mb-10 max-w-[32ch]">
+            </motion.h1>
+            <motion.p
+              style={{ opacity: subtitleOpacity, y: subtitleY }}
+              className="text-white/70 text-[1rem] leading-snug mb-10 max-w-[32ch]"
+            >
               La maggior parte del marketing si dimentica in 24 ore.<br />
               Noi costruiamo brand che restano — nella testa e nel cuore delle persone.
-            </p>
-            <div className="flex flex-wrap gap-3">
+            </motion.p>
+            <motion.div
+              style={{ opacity: ctasOpacity, y: ctasY }}
+              className="flex flex-wrap gap-3"
+            >
               <a
                 href="#work"
                 className="inline-flex items-center gap-2 bg-white text-[#090909] px-6 py-3.5 rounded-full text-sm font-bold hover:bg-[#090909] hover:text-white transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] group"
@@ -203,21 +222,21 @@ export default function Hero() {
               >
                 Inizia un progetto
               </a>
-            </div>
+            </motion.div>
           </div>
         </div>
 
-        {/* Desktop scroll indicator */}
+        {/* Desktop scroll indicator — sul pannello arancione */}
         <motion.div
           style={{ opacity: indicatorOpacity }}
-          className="hidden lg:flex absolute bottom-10 right-10 flex-col items-center gap-2 text-[#090909]/35 z-20"
+          className="hidden lg:flex absolute bottom-10 left-10 xl:left-14 flex-row items-center gap-3 text-white/80 z-20"
         >
-          <span className="text-[0.58rem] tracking-[0.2em] uppercase font-medium">Scorri</span>
+          <span className="text-[0.6rem] tracking-[0.25em] uppercase font-bold">Scorri</span>
           <motion.div
-            animate={{ y: [0, 5, 0] }}
+            animate={{ y: [0, 4, 0] }}
             transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
           >
-            <ArrowDown size={13} />
+            <ArrowDown size={14} weight="bold" />
           </motion.div>
         </motion.div>
 
