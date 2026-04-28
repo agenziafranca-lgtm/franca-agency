@@ -67,6 +67,15 @@ body::after {
   animation-play-state: paused;
 }
 
+/* Hide scrollbar utility — usato dall'horizontal scroll dei case study */
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 /* Hero progress bar — colore adattivo al pannello sottostante */
 .hero-progress-fill {
   background-color: #ff462e;

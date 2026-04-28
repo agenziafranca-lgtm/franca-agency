@@ -1,117 +1,35 @@
 'use client'
 
-import { useRef, useState, useEffect } from 'react'
-import { motion, useInView, useMotionValue, useTransform, useSpring } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
 import Link from 'next/link'
-import { ArrowUpRight } from '@phosphor-icons/react'
+import { ArrowUpRight, ArrowLeft, ArrowRight } from '@phosphor-icons/react'
 import { cases as allCases } from '@/lib/cases'
 
-const cases = allCases.map((c) => ({
-  slug: c.slug,
-  client: c.client,
-  category: c.category,
-  result: c.tagline,
-  description: c.challenge.slice(0, 160) + '…',
-  image: c.cardImage,
-}))
-
-function CaseCard({
-  item,
-  delay = 0,
-}: {
-  item: (typeof cases)[0]
-  delay?: number
-}) {
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-60px' })
-
-  // Tilt 3D — desktop only (controllato via canHover)
-  const [canHover, setCanHover] = useState(false)
-  const mouseX = useMotionValue(0)
-  const mouseY = useMotionValue(0)
-
-  const rotX = useSpring(useTransform(mouseY, [-0.5, 0.5], ['5deg', '-5deg']), {
-    stiffness: 300,
-    damping: 30,
-  })
-  const rotY = useSpring(useTransform(mouseX, [-0.5, 0.5], ['-5deg', '5deg']), {
-    stiffness: 300,
-    damping: 30,
-  })
-
-  // Detect hover capability
-  useEffect(() => {
-    setCanHover(window.matchMedia('(hover: hover) and (pointer: fine)').matches)
-  }, [])
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!canHover) return
-    const rect = e.currentTarget.getBoundingClientRect()
-    const x = (e.clientX - rect.left) / rect.width - 0.5
-    const y = (e.clientY - rect.top) / rect.height - 0.5
-    mouseX.set(x)
-    mouseY.set(y)
-  }
-
-  const handleMouseLeave = () => {
-    mouseX.set(0)
-    mouseY.set(0)
-  }
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 36 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{ rotateX: canHover ? rotX : 0, rotateY: canHover ? rotY : 0, transformPerspective: 1200 }}
-      className="relative"
-    >
-      <Link href={`/work/${item.slug}`} className="group block overflow-hidden rounded-2xl bg-[#eaeaea] cursor-pointer">
-        <div className="relative overflow-hidden aspect-[4/3]">
-          <img
-            src={item.image}
-            alt={item.client}
-            className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#090909]/65 via-[#090909]/10 to-transparent" />
-
-          <div className="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/0 group-hover:bg-white/90 flex items-center justify-center transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] scale-75 group-hover:scale-100 opacity-0 group-hover:opacity-100">
-            <ArrowUpRight size={18} weight="bold" className="text-[#090909]" />
-          </div>
-
-          <div className="absolute bottom-0 left-0 right-0 p-6">
-            <span className="text-[0.65rem] text-white/55 tracking-[0.15em] uppercase font-medium block mb-2">
-              {item.category}
-            </span>
-            <h3 className="text-xl font-bold text-white tracking-tight">{item.client}</h3>
-          </div>
-        </div>
-
-        <div className="p-6 bg-[#eaeaea]">
-          <p className="text-[0.85rem] text-[#6b6b6b] leading-relaxed mb-3">{item.description}</p>
-          <div className="text-[0.8rem] font-bold text-[#ff462e]">{item.result}</div>
-        </div>
-      </Link>
-    </motion.div>
-  )
-}
-
 export default function Work() {
+  const trackRef = useRef<HTMLDivElement>(null)
   const headRef = useRef(null)
   const headInView = useInView(headRef, { once: true, margin: '-80px' })
 
+  const scrollByAmount = (direction: 1 | -1) => {
+    const track = trackRef.current
+    if (!track) return
+    const card = track.firstElementChild as HTMLElement | null
+    const cardWidth = card?.offsetWidth ?? track.offsetWidth * 0.7
+    const gap = 24
+    track.scrollBy({ left: direction * (cardWidth + gap), behavior: 'smooth' })
+  }
+
   return (
-    <section id="work" className="py-28 bg-[#eaeaea]">
-      <div className="max-w-7xl mx-auto px-6 md:px-10">
+    <section id="work" className="py-24 md:py-28 bg-[#eaeaea] overflow-hidden">
+
+      {/* Header + nav buttons */}
+      <div className="max-w-7xl mx-auto px-6 md:px-10 mb-12 md:mb-16 flex items-end justify-between gap-6">
         <motion.div
           ref={headRef}
           initial={{ opacity: 0, y: 24 }}
           animate={headInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-16"
         >
           <span className="text-[0.7rem] text-[#ff462e] font-bold tracking-[0.18em] uppercase mb-5 block">
             Lavori selezionati
@@ -121,26 +39,101 @@ export default function Work() {
           </h2>
         </motion.div>
 
-        {/* Asymmetric bento grid — alternating [2fr 1fr] / [1fr 2fr] */}
-        <div className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-6">
-            <CaseCard item={cases[0]} delay={0} />
-            <CaseCard item={cases[1]} delay={0.1} />
+        {/* Prev/Next — desktop only */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={headInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+          className="hidden md:flex gap-2 shrink-0 pb-2"
+        >
+          <button
+            onClick={() => scrollByAmount(-1)}
+            aria-label="Caso studio precedente"
+            className="w-12 h-12 rounded-full bg-white border border-[#dcdcdc] hover:bg-[#090909] hover:text-white hover:border-[#090909] transition-all duration-300 flex items-center justify-center active:scale-[0.95]"
+          >
+            <ArrowLeft size={16} weight="bold" />
+          </button>
+          <button
+            onClick={() => scrollByAmount(1)}
+            aria-label="Caso studio successivo"
+            className="w-12 h-12 rounded-full bg-[#090909] text-white hover:bg-[#ff462e] transition-all duration-300 flex items-center justify-center active:scale-[0.95]"
+          >
+            <ArrowRight size={16} weight="bold" />
+          </button>
+        </motion.div>
+      </div>
+
+      {/* Horizontal scroll track */}
+      <div
+        ref={trackRef}
+        className="hide-scrollbar flex gap-4 md:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 px-6 md:px-10"
+        style={{ scrollPaddingLeft: '1.5rem' }}
+      >
+        {allCases.map((c, i) => (
+          <CaseCard key={c.slug} item={c} index={i} />
+        ))}
+        {/* Spacer per permettere all'ultima card di scorrere correttamente */}
+        <div aria-hidden="true" className="shrink-0 w-2 md:w-6" />
+      </div>
+
+      {/* Mobile hint */}
+      <div className="md:hidden mt-5 px-6 flex items-center gap-2 text-[#6b6b6b] text-[0.72rem] tracking-[0.1em] uppercase font-medium">
+        <span>Scorri</span>
+        <ArrowRight size={11} weight="bold" />
+      </div>
+
+    </section>
+  )
+}
+
+function CaseCard({ item, index }: { item: typeof allCases[0]; index: number }) {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-80px' })
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 28 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: Math.min(index * 0.06, 0.4) }}
+      className="shrink-0 snap-start w-[85vw] sm:w-[68vw] md:w-[58vw] lg:w-[52vw] xl:w-[640px] max-w-[720px]"
+    >
+      <Link href={`/work/${item.slug}`} className="group block">
+        <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-[#dcdcdc]">
+          <img
+            src={item.cardImage}
+            alt={item.client}
+            className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#090909]/70 via-[#090909]/10 to-transparent" />
+
+          {/* Top right: arrow circle */}
+          <div className="absolute top-5 right-5 w-12 h-12 rounded-full bg-white/95 flex items-center justify-center transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] scale-90 group-hover:scale-100 shadow-lg">
+            <ArrowUpRight size={18} weight="bold" className="text-[#090909]" />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-6">
-            <CaseCard item={cases[2]} delay={0.05} />
-            <CaseCard item={cases[3]} delay={0.15} />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-6">
-            <CaseCard item={cases[4]} delay={0} />
-            <CaseCard item={cases[5]} delay={0.1} />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-6">
-            <CaseCard item={cases[6]} delay={0.05} />
-            <CaseCard item={cases[7]} delay={0.15} />
+
+          {/* Bottom: meta */}
+          <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+            <span className="text-[0.65rem] text-white/65 tracking-[0.18em] uppercase font-bold block mb-3">
+              {item.category}
+            </span>
+            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tighter leading-tight mb-2">
+              {item.client}
+            </h3>
+            <p className="text-[0.85rem] md:text-[0.95rem] text-white/85 max-w-[34ch] leading-snug">
+              {item.tagline}
+            </p>
           </div>
         </div>
-      </div>
-    </section>
+
+        {/* Counter index */}
+        <div className="mt-4 flex items-center justify-between text-[0.7rem] text-[#6b6b6b] font-medium tracking-[0.12em] uppercase">
+          <span>0{index + 1} / 0{allCases.length}</span>
+          <span className="text-[#ff462e] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1.5">
+            Scopri il caso <ArrowUpRight size={11} weight="bold" />
+          </span>
+        </div>
+      </Link>
+    </motion.div>
   )
 }
