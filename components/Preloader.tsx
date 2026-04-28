@@ -9,11 +9,12 @@ const MESSAGES = [
   '«Devo essere primo su Google.»',
 ]
 
-const DURATION_MS = 4500
+const DURATION_MS = 5000
 
 export default function Preloader() {
   const [shouldShow, setShouldShow] = useState<null | boolean>(null)
   const [progress, setProgress] = useState(0)
+  const [messageIndex, setMessageIndex] = useState(0)
   const [isVisible, setIsVisible] = useState(true)
 
   useEffect(() => {
@@ -32,14 +33,16 @@ export default function Preloader() {
 
     const tick = (now: number) => {
       const elapsed = now - start
-      const p = Math.min(1, elapsed / DURATION_MS)
-      const eased = 1 - Math.pow(1 - p, 3)
+      const p = Math.min(1, elapsed / DURATION_MS) // tempo lineare
+      const eased = 1 - Math.pow(1 - p, 3) // easing solo per la barra
       setProgress(Math.round(eased * 100))
+      // Indice messaggio basato sul tempo lineare → ogni frase ha la stessa durata
+      setMessageIndex(Math.min(MESSAGES.length - 1, Math.floor(p * MESSAGES.length)))
       if (p < 1) {
         raf = requestAnimationFrame(tick)
       } else {
         sessionStorage.setItem('franca-preloader-seen', '1')
-        setTimeout(() => setIsVisible(false), 350)
+        setTimeout(() => setIsVisible(false), 400)
       }
     }
     raf = requestAnimationFrame(tick)
@@ -48,9 +51,6 @@ export default function Preloader() {
       cancelAnimationFrame(raf)
     }
   }, [])
-
-  // 3 fasi: 0-33%, 33-66%, 66-100%
-  const messageIndex = Math.min(MESSAGES.length - 1, Math.floor((progress / 100) * MESSAGES.length))
 
   if (shouldShow === null || shouldShow === false) return null
 
