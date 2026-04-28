@@ -1,7 +1,7 @@
 'use client'
 
-import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { useRef, useState, useEffect } from 'react'
+import { motion, useInView, useMotionValue, useTransform, useSpring } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowUpRight } from '@phosphor-icons/react'
 import { cases as allCases } from '@/lib/cases'
@@ -22,15 +22,52 @@ function CaseCard({
   item: (typeof cases)[0]
   delay?: number
 }) {
-  const ref = useRef(null)
+  const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-60px' })
+
+  // Tilt 3D — desktop only (controllato via canHover)
+  const [canHover, setCanHover] = useState(false)
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+
+  const rotX = useSpring(useTransform(mouseY, [-0.5, 0.5], ['5deg', '-5deg']), {
+    stiffness: 300,
+    damping: 30,
+  })
+  const rotY = useSpring(useTransform(mouseX, [-0.5, 0.5], ['-5deg', '5deg']), {
+    stiffness: 300,
+    damping: 30,
+  })
+
+  // Detect hover capability
+  useEffect(() => {
+    setCanHover(window.matchMedia('(hover: hover) and (pointer: fine)').matches)
+  }, [])
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!canHover) return
+    const rect = e.currentTarget.getBoundingClientRect()
+    const x = (e.clientX - rect.left) / rect.width - 0.5
+    const y = (e.clientY - rect.top) / rect.height - 0.5
+    mouseX.set(x)
+    mouseY.set(y)
+  }
+
+  const handleMouseLeave = () => {
+    mouseX.set(0)
+    mouseY.set(0)
+  }
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 28 }}
+      initial={{ opacity: 0, y: 36 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ rotateX: canHover ? rotX : 0, rotateY: canHover ? rotY : 0, transformPerspective: 1200 }}
+      className="relative"
     >
       <Link href={`/work/${item.slug}`} className="group block overflow-hidden rounded-2xl bg-[#eaeaea] cursor-pointer">
         <div className="relative overflow-hidden aspect-[4/3]">

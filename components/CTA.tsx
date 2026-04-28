@@ -2,7 +2,8 @@
 
 import { useRef, useState, useEffect } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
-import { ArrowRight, CheckCircle, X } from '@phosphor-icons/react'
+import { ArrowRight, X } from '@phosphor-icons/react'
+import TextReveal from './TextReveal'
 
 const serviziOptions = [
   { label: 'Costruire il mio brand', sub: 'logo, naming, identità visiva' },
@@ -153,9 +154,13 @@ export default function CTA() {
             Inizia un progetto
           </span>
           <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-8 items-end">
-            <h2 className="text-4xl md:text-5xl xl:text-[3.5rem] font-bold tracking-tighter text-[#090909] leading-tight">
-              Parliamoci<span style={{ color: '#3626A7' }}>.</span>
-            </h2>
+            <TextReveal
+              as="h2"
+              className="text-4xl md:text-5xl xl:text-[3.5rem] font-bold tracking-tighter text-[#090909] leading-tight"
+              suffix={<span style={{ color: '#3626A7' }}>.</span>}
+            >
+              Parliamoci
+            </TextReveal>
             <p className="text-[#6b6b6b] leading-relaxed text-[0.95rem]">
               Raccontaci dove sei e dove vuoi arrivare. Ti risponderemo entro 24 ore — senza impegno, senza presentazioni da 80 slide.
             </p>
@@ -170,13 +175,41 @@ export default function CTA() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="bg-[#f5f5f5] rounded-2xl p-12 text-center"
           >
-            <CheckCircle size={48} weight="fill" className="text-[#ff462e] mx-auto mb-5" />
-            <h3 className="text-2xl font-bold tracking-tighter text-[#090909] mb-3">
+            <motion.div
+              initial={{ scale: 0, rotate: -90 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+              className="w-16 h-16 mx-auto mb-5 rounded-full bg-[#ff462e] flex items-center justify-center"
+            >
+              <svg width="28" height="22" viewBox="0 0 28 22" fill="none">
+                <motion.path
+                  d="M2 11L10 19L26 3"
+                  stroke="white"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+                />
+              </svg>
+            </motion.div>
+            <motion.h3
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
+              className="text-2xl font-bold tracking-tighter text-[#090909] mb-3"
+            >
               Messaggio ricevuto<span style={{ color: '#3626A7' }}>.</span>
-            </h3>
-            <p className="text-[#6b6b6b] text-[0.95rem] max-w-[44ch] mx-auto">
+            </motion.h3>
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.85 }}
+              className="text-[#6b6b6b] text-[0.95rem] max-w-[44ch] mx-auto"
+            >
               Ti risponderemo entro 24 ore. Intanto dai un'occhiata ai nostri lavori — forse trovi già qualcosa che ti somiglia.
-            </p>
+            </motion.p>
           </motion.div>
         ) : (
           <motion.form
@@ -249,11 +282,14 @@ export default function CTA() {
                 {serviziOptions.map((s) => {
                   const selected = form.servizi.includes(s.label)
                   return (
-                    <button
+                    <motion.button
                       key={s.label}
                       type="button"
                       onClick={() => toggleServizio(s.label)}
-                      className={`px-4 py-2.5 rounded-xl text-left transition-all duration-200 border ${
+                      whileTap={{ scale: 0.95 }}
+                      animate={{ scale: selected ? [1, 1.06, 1] : 1 }}
+                      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                      className={`px-4 py-2.5 rounded-xl text-left transition-colors duration-200 border ${
                         selected
                           ? 'bg-[#ff462e] border-[#ff462e] text-white'
                           : 'bg-transparent border-[#eaeaea] text-[#090909] hover:border-[#090909]'
@@ -261,7 +297,7 @@ export default function CTA() {
                     >
                       <div className={`text-[0.82rem] font-medium leading-tight ${selected ? 'text-white' : 'text-[#090909]'}`}>{s.label}</div>
                       <div className={`text-[0.68rem] mt-0.5 ${selected ? 'text-white/70' : 'text-[#6b6b6b]'}`}>{s.sub}</div>
-                    </button>
+                    </motion.button>
                   )
                 })}
               </div>
@@ -348,7 +384,7 @@ function Field({ label, children }: { label: string; children: React.ReactElemen
       <label className="block text-[0.75rem] font-bold text-[#090909] tracking-[0.08em] uppercase mb-2">
         {label}
       </label>
-      <div className="[&_input]:w-full [&_input]:bg-[#f5f5f5] [&_input]:border [&_input]:border-[#eaeaea] [&_input]:rounded-xl [&_input]:px-4 [&_input]:py-3 [&_input]:text-[0.9rem] [&_input]:text-[#090909] [&_input]:placeholder-[#c0c0c0] [&_input]:outline-none [&_input]:transition-all [&_input]:duration-200 [&_input:focus]:border-[#090909] [&_input:focus]:bg-white [&_textarea]:w-full [&_textarea]:bg-[#f5f5f5] [&_textarea]:border [&_textarea]:border-[#eaeaea] [&_textarea]:rounded-xl [&_textarea]:px-4 [&_textarea]:py-3 [&_textarea]:text-[0.9rem] [&_textarea]:text-[#090909] [&_textarea]:placeholder-[#c0c0c0] [&_textarea]:outline-none [&_textarea]:transition-all [&_textarea]:duration-200 [&_textarea:focus]:border-[#090909] [&_textarea:focus]:bg-white [&_textarea]:resize-none [&_select]:w-full [&_select]:bg-[#f5f5f5] [&_select]:border [&_select]:border-[#eaeaea] [&_select]:rounded-xl [&_select]:px-4 [&_select]:py-3 [&_select]:text-[0.9rem] [&_select]:text-[#090909] [&_select]:outline-none [&_select]:transition-all [&_select]:duration-200 [&_select:focus]:border-[#090909] [&_select:focus]:bg-white [&_select]:appearance-none">
+      <div className="[&_input]:w-full [&_input]:bg-[#f5f5f5] [&_input]:border [&_input]:border-[#eaeaea] [&_input]:rounded-xl [&_input]:px-4 [&_input]:py-3 [&_input]:text-[0.9rem] [&_input]:text-[#090909] [&_input]:placeholder-[#c0c0c0] [&_input]:outline-none [&_input]:transition-all [&_input]:duration-300 [&_input:focus]:border-[#ff462e] [&_input:focus]:bg-white [&_input:focus]:shadow-[0_0_0_3px_rgba(255,70,46,0.15)] [&_textarea]:w-full [&_textarea]:bg-[#f5f5f5] [&_textarea]:border [&_textarea]:border-[#eaeaea] [&_textarea]:rounded-xl [&_textarea]:px-4 [&_textarea]:py-3 [&_textarea]:text-[0.9rem] [&_textarea]:text-[#090909] [&_textarea]:placeholder-[#c0c0c0] [&_textarea]:outline-none [&_textarea]:transition-all [&_textarea]:duration-300 [&_textarea:focus]:border-[#ff462e] [&_textarea:focus]:bg-white [&_textarea:focus]:shadow-[0_0_0_3px_rgba(255,70,46,0.15)] [&_textarea]:resize-none [&_select]:w-full [&_select]:bg-[#f5f5f5] [&_select]:border [&_select]:border-[#eaeaea] [&_select]:rounded-xl [&_select]:px-4 [&_select]:py-3 [&_select]:text-[0.9rem] [&_select]:text-[#090909] [&_select]:outline-none [&_select]:transition-all [&_select]:duration-300 [&_select:focus]:border-[#ff462e] [&_select:focus]:bg-white [&_select:focus]:shadow-[0_0_0_3px_rgba(255,70,46,0.15)] [&_select]:appearance-none">
         {children}
       </div>
     </div>

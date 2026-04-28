@@ -6,6 +6,7 @@ const columns = {
   Servizi: [
     { label: 'Identità di Brand', href: '/#services' },
     { label: 'Produzione Creativa', href: '/#services' },
+    { label: 'Siti Web & E-commerce', href: '/#services' },
     { label: 'Performance Marketing', href: '/#services' },
     { label: 'Strategia Editoriale', href: '/#services' },
   ],
@@ -13,11 +14,6 @@ const columns = {
     { label: 'Chi siamo', href: '/#about' },
     { label: 'Lavori', href: '/#work' },
     { label: 'Contatti', href: '/#contact' },
-  ],
-  Contatti: [
-    { label: 'mail@agenziafranca.it', href: 'mailto:mail@agenziafranca.it' },
-    { label: 'Instagram', href: 'https://instagram.com/agenziafranca' },
-    { label: 'LinkedIn', href: 'https://linkedin.com/company/agenziafranca' },
   ],
 }
 
@@ -31,7 +27,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-[#eaeaea] bg-[#eaeaea] pt-16 pb-10">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr] gap-12 mb-14">
+        <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-12 mb-14">
           <div>
             <img
               src="/mascot-trasparente.png"

@@ -2,6 +2,10 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { cases, getCaseBySlug } from '@/lib/cases'
 import { ArrowLeft } from '@phosphor-icons/react/dist/ssr'
+import Counter from '@/components/Counter'
+import CaseStudyHero from '@/components/CaseStudyHero'
+import ReadingProgress from '@/components/ReadingProgress'
+import RevealSection from '@/components/RevealSection'
 
 export function generateStaticParams() {
   return cases.map((c) => ({ slug: c.slug }))
@@ -66,6 +70,8 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
 
+      <ReadingProgress />
+
       {/* ── Back link ───────────────────────────────────── */}
       <div className="fixed top-5 left-5 z-50">
         <Link
@@ -77,32 +83,19 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         </Link>
       </div>
 
-      {/* ── Hero ────────────────────────────────────────── */}
-      <section className="relative h-[70vh] overflow-hidden">
-        <img
-          src={c.heroImage}
-          alt={`Caso studio ${c.client} — ${c.category}`}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#090909]/80 via-[#090909]/20 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 p-10 md:p-16 max-w-7xl mx-auto">
-          <span className="text-[0.65rem] text-[#ff462e] font-bold tracking-[0.2em] uppercase block mb-4">
-            {c.category}
-          </span>
-          <h1 className="text-4xl md:text-6xl xl:text-7xl font-bold tracking-tighter text-white leading-none mb-4">
-            {c.client}
-          </h1>
-          <p className="text-lg md:text-xl text-white/70 font-medium max-w-2xl">
-            {c.tagline}
-          </p>
-        </div>
-      </section>
+      {/* ── Hero con parallax + ken-burns ──────────────── */}
+      <CaseStudyHero
+        image={c.heroImage}
+        category={c.category}
+        client={c.client}
+        tagline={c.tagline}
+      />
 
       {/* ── Content ─────────────────────────────────────── */}
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
         {/* Services + Results */}
-        <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-12 py-20 border-b border-[#eaeaea]">
+        <RevealSection className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-12 py-20 border-b border-[#eaeaea]">
           <div>
             <p className="text-[0.65rem] text-[#ff462e] font-bold tracking-[0.2em] uppercase mb-6">Servizi</p>
             <ul className="space-y-2">
@@ -119,46 +112,51 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             <div className="grid grid-cols-3 gap-8">
               {c.results.map((r) => (
                 <div key={r.label}>
-                  <div className="text-3xl md:text-4xl font-bold tracking-tighter text-[#090909] mb-1">{r.value}</div>
+                  <Counter
+                    value={r.value}
+                    className="text-3xl md:text-4xl font-bold tracking-tighter text-[#090909] mb-1 block"
+                  />
                   <div className="text-[0.72rem] text-[#6b6b6b] leading-snug">{r.label}</div>
                 </div>
               ))}
             </div>
           </div>
-        </div>
+        </RevealSection>
 
         {/* Challenge */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 py-20 border-b border-[#eaeaea]">
+        <RevealSection className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 py-20 border-b border-[#eaeaea]">
           <p className="text-[0.65rem] text-[#ff462e] font-bold tracking-[0.2em] uppercase">La sfida</p>
           <p className="text-[1.05rem] text-[#6b6b6b] leading-relaxed max-w-[62ch]">{c.challenge}</p>
-        </div>
+        </RevealSection>
 
         {/* Approach */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 py-20 border-b border-[#eaeaea]">
+        <RevealSection className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 py-20 border-b border-[#eaeaea]">
           <p className="text-[0.65rem] text-[#ff462e] font-bold tracking-[0.2em] uppercase">L&apos;approccio</p>
           <div className="space-y-6">
             {c.approach.map((p, i) => (
               <p key={i} className="text-[1.05rem] text-[#6b6b6b] leading-relaxed max-w-[62ch]">{p}</p>
             ))}
           </div>
-        </div>
-
+        </RevealSection>
 
         {/* Body sections */}
         <div className="py-20 space-y-0">
           {c.body.map((b) => (
-            <div key={b.section} className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 py-14 border-b border-[#eaeaea]">
+            <RevealSection
+              key={b.section}
+              className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 py-14 border-b border-[#eaeaea]"
+            >
               <h2 className="text-[1rem] font-bold text-[#090909]">
                 {b.section}<span style={{ color: '#ff462e' }}>.</span>
               </h2>
               <p className="text-[1.05rem] text-[#6b6b6b] leading-relaxed max-w-[62ch]">{b.text}</p>
-            </div>
+            </RevealSection>
           ))}
         </div>
 
         {/* Related case studies — link interni */}
         {related.length > 0 && (
-          <div className="py-20 border-t border-[#eaeaea]">
+          <RevealSection className="py-20 border-t border-[#eaeaea]">
             <p className="text-[0.65rem] text-[#ff462e] font-bold tracking-[0.2em] uppercase mb-10">
               Altri lavori
             </p>
@@ -184,11 +182,11 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                 </Link>
               ))}
             </div>
-          </div>
+          </RevealSection>
         )}
 
         {/* CTA */}
-        <div className="py-24 border-t border-[#eaeaea]">
+        <RevealSection className="py-24 border-t border-[#eaeaea]">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-10">
             <div>
               <p className="text-[0.65rem] text-[#ff462e] font-bold tracking-[0.2em] uppercase mb-4">
@@ -205,7 +203,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
               Inizia un progetto
             </a>
           </div>
-        </div>
+        </RevealSection>
 
       </div>
     </main>
