@@ -46,13 +46,21 @@ export default function Hero() {
     ctx.drawImage(img, (cw - sw) / 2, (ch - sh) / 2, sw, sh)
   }
 
-  // Preload frames
+  // Preload frames con tier responsive
   useEffect(() => {
+    // Tier detection — sm/md/lg in base a viewport effettivo (CSS px × DPR cap 2)
+    const innerWidth = window.innerWidth
+    const dpr = Math.min(window.devicePixelRatio || 1, 2)
+    const effectiveWidth = innerWidth * dpr
+    let tier: 'sm' | 'md' | 'lg' = 'sm'
+    if (effectiveWidth >= 2400) tier = 'lg'
+    else if (effectiveWidth >= 1500) tier = 'md'
+
     const frames: HTMLImageElement[] = []
     for (let i = 0; i < TOTAL_FRAMES; i++) {
       const img = new Image()
       const num = String(i + 1).padStart(3, '0')
-      img.src = `/frames/frame-${num}.webp`
+      img.src = `/frames/${tier}/frame-${num}.webp`
       const idx = i
       img.onload = () => {
         loadedRef.current[idx] = true
@@ -226,17 +234,21 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Desktop scroll indicator — sul pannello arancione */}
+        {/* Desktop scroll indicator — verticale sul lato destro del pannello arancione */}
         <motion.div
           style={{ opacity: indicatorOpacity }}
-          className="hidden lg:flex absolute bottom-10 left-10 xl:left-14 flex-row items-center gap-3 text-white/80 z-20"
+          className="hidden lg:flex absolute top-1/2 -translate-y-1/2 right-[calc(58%+1.5rem)] xl:right-[calc(58%+2rem)] flex-col items-center gap-3 text-[#090909] z-20"
         >
-          <span className="text-[0.6rem] tracking-[0.25em] uppercase font-bold">Scorri</span>
+          <div className="flex flex-col items-center text-[0.7rem] font-bold tracking-[0.05em] leading-[1.6]">
+            {'SCROLL'.split('').map((letter, i) => (
+              <span key={i}>{letter}</span>
+            ))}
+          </div>
           <motion.div
-            animate={{ y: [0, 4, 0] }}
+            animate={{ y: [0, 6, 0] }}
             transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
           >
-            <ArrowDown size={14} weight="bold" />
+            <ArrowDown size={16} weight="bold" />
           </motion.div>
         </motion.div>
 
