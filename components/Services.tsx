@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { ArrowUpRight } from '@phosphor-icons/react'
 
@@ -25,20 +25,29 @@ const services = [
   },
   {
     number: '03',
-    title: 'Budget che torna indietro',
-    subtitle: 'Performance Marketing',
-    description: 'La pubblicità non funziona quando ottimizzi solo il costo per clic. Funziona quando ottimizzi il messaggio dietro al clic. Paid search, paid social e media buying guidati da chi capisce i numeri e le persone — insieme.',
-    tags: ['Google Ads', 'Meta Ads', 'Programmatic', 'Analytics', 'CRO'],
+    title: 'Un sito che lavora anche quando dormite',
+    subtitle: 'Siti Web & E-commerce',
+    description: 'Il sito non è una brochure online. È il vostro venditore migliore — sempre disponibile, sempre coerente, sempre misurabile. Costruiamo siti ed e-commerce pensati per convertire visitatori in clienti, integrati con il resto del marketing.',
+    tags: ['Siti Web', 'E-commerce', 'UX/UI Design', 'Performance', 'SEO Tecnico'],
     bg: '#ff462e',
     text: 'white',
   },
   {
     number: '04',
+    title: 'Budget che torna indietro',
+    subtitle: 'Performance Marketing',
+    description: 'La pubblicità non funziona quando ottimizzi solo il costo per clic. Funziona quando ottimizzi il messaggio dietro al clic. Paid search, paid social e media buying guidati da chi capisce i numeri e le persone — insieme.',
+    tags: ['Google Ads', 'Meta Ads', 'Programmatic', 'Analytics', 'CRO'],
+    bg: '#090909',
+    text: 'white',
+  },
+  {
+    number: '05',
     title: 'Presenti dove conta, con costanza',
     subtitle: 'Strategia Editoriale',
     description: 'Il social non si improvvisa. Si costruisce con una strategia, un piano e la disciplina di eseguire ogni settimana. Contenuti pensati per il vostro pubblico — non per accontentare l\'algoritmo.',
     tags: ['SEO', 'Piano Editoriale', 'Social Media', 'Newsletter', 'Thought Leadership'],
-    bg: '#090909',
+    bg: '#ff462e',
     text: 'white',
   },
 ]
@@ -49,17 +58,19 @@ function ServiceRow({
   onEnter,
   onLeave,
   onToggle,
+  canHover,
 }: {
   service: typeof services[0]
   isActive: boolean
   onEnter: () => void
   onLeave: () => void
   onToggle: () => void
+  canHover: boolean
 }) {
   return (
     <motion.div
-      onMouseEnter={onEnter}
-      onMouseLeave={onLeave}
+      onMouseEnter={canHover ? onEnter : undefined}
+      onMouseLeave={canHover ? onLeave : undefined}
       onClick={onToggle}
       animate={{ backgroundColor: isActive ? service.bg : '#ffffff' }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
@@ -143,8 +154,17 @@ function ServiceRow({
 
 export default function Services() {
   const [active, setActive] = useState<number | null>(null)
+  const [canHover, setCanHover] = useState(true)
   const headRef = useRef(null)
   const headInView = useInView(headRef, { once: true, margin: '-80px' })
+
+  useEffect(() => {
+    const mq = window.matchMedia('(hover: hover) and (pointer: fine)')
+    setCanHover(mq.matches)
+    const onChange = (e: MediaQueryListEvent) => setCanHover(e.matches)
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
 
   return (
     <section id="services" className="bg-white">
@@ -179,6 +199,7 @@ export default function Services() {
             key={s.number}
             service={s}
             isActive={active === i}
+            canHover={canHover}
             onEnter={() => setActive(i)}
             onLeave={() => setActive(null)}
             onToggle={() => setActive(active === i ? null : i)}

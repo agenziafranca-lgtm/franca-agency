@@ -18,6 +18,15 @@ export default function Hero() {
   const indicatorOpacity = useTransform(scrollProgress, [0, 0.08], [1, 0])
   const barWidth = useTransform(scrollProgress, [0, 1], ['0%', '100%'])
 
+  // Progressive reveal — mobile (legato allo scroll)
+  const labelOpacity = useTransform(scrollProgress, [0.05, 0.20], [0, 1])
+  const labelY = useTransform(scrollProgress, [0.05, 0.20], [12, 0])
+  const subtitleOpacity = useTransform(scrollProgress, [0.18, 0.35], [0, 1])
+  const subtitleY = useTransform(scrollProgress, [0.18, 0.35], [12, 0])
+  const ctasOpacity = useTransform(scrollProgress, [0.30, 0.48], [0, 1])
+  const ctasY = useTransform(scrollProgress, [0.30, 0.48], [12, 0])
+  const mobileScrollHintOpacity = useTransform(scrollProgress, [0, 0.04], [1, 0])
+
   const drawFrame = (index: number) => {
     const canvas = canvasRef.current
     const img = framesRef.current[index]
@@ -105,18 +114,27 @@ export default function Hero() {
 
         {/* Mobile top — orange */}
         <div className="lg:hidden absolute top-0 inset-x-0 h-[62%] bg-[#ff462e] flex flex-col justify-center px-6 pt-16 pb-5 z-10">
-          <p className="text-[0.62rem] text-white/55 font-bold tracking-[0.2em] uppercase mb-6">
+          <motion.p
+            style={{ opacity: labelOpacity, y: labelY }}
+            className="text-[0.62rem] text-white/55 font-bold tracking-[0.2em] uppercase mb-6"
+          >
             Agenzia di Marketing
-          </p>
+          </motion.p>
           <h1 className="text-[clamp(3.8rem,16vw,5.5rem)] font-bold tracking-tighter leading-[0.88] mb-4">
             <span className="text-white">Franca</span>
             <span style={{ color: '#3626A7' }}>.</span>
           </h1>
-          <p className="text-white/70 text-[0.82rem] leading-snug mb-7 max-w-[28ch]">
+          <motion.p
+            style={{ opacity: subtitleOpacity, y: subtitleY }}
+            className="text-white/70 text-[0.82rem] leading-snug mb-7 max-w-[28ch]"
+          >
             La maggior parte del marketing si dimentica in 24 ore.<br />
             Noi costruiamo brand che restano.
-          </p>
-          <div className="flex gap-2.5">
+          </motion.p>
+          <motion.div
+            style={{ opacity: ctasOpacity, y: ctasY }}
+            className="flex gap-2.5"
+          >
             <a
               href="#work"
               className="inline-flex items-center gap-1.5 bg-white text-[#090909] px-5 py-2.5 rounded-full text-xs font-bold hover:bg-[#090909] hover:text-white transition-all duration-300 active:scale-[0.98]"
@@ -129,8 +147,22 @@ export default function Hero() {
             >
               Inizia un progetto
             </a>
-          </div>
+          </motion.div>
         </div>
+
+        {/* Mobile scroll hint */}
+        <motion.div
+          style={{ opacity: mobileScrollHintOpacity }}
+          className="lg:hidden absolute left-1/2 -translate-x-1/2 bottom-[40%] flex flex-col items-center gap-1.5 text-white/70 z-20 pointer-events-none"
+        >
+          <span className="text-[0.55rem] tracking-[0.25em] uppercase font-bold">Scorri</span>
+          <motion.div
+            animate={{ y: [0, 5, 0] }}
+            transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            <ArrowDown size={14} weight="bold" />
+          </motion.div>
+        </motion.div>
 
         {/* Mobile bottom + Desktop right — canvas panel */}
         <div className="
