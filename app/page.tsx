@@ -12,7 +12,7 @@ const jsonLd = {
   '@type': 'Organization',
   name: 'Franca.',
   url: 'https://agenziafranca.it',
-  description: 'Trasformiamo aziende in brand di cui innamorarsi. Non facciamo compitini — costruiamo Brand.',
+  description: 'Agenzia di marketing per aziende che vogliono distinguersi davvero. Strategia, contenuti, siti web, ADV e gestione social — pensati su misura, non in serie.',
   email: 'mail@agenziafranca.it',
   contactPoint: {
     '@type': 'ContactPoint',
@@ -22,12 +22,14 @@ const jsonLd = {
   },
   areaServed: 'IT',
   knowsAbout: [
-    'Brand Strategy',
-    'Social Media Management',
+    'Marketing Strategy',
+    'Brand Identity',
     'Performance Marketing',
+    'Social Media Management',
     'Content Marketing',
-    'Web Design',
-    'Identità di Brand',
+    'Siti Web e E-commerce',
+    'SEO',
+    'Strategia Editoriale',
   ],
 }
 

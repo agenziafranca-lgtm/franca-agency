@@ -21,14 +21,18 @@ export const metadata: Metadata = {
   description:
     "Agenzia di marketing per aziende che vogliono distinguersi. Strategia, contenuti, siti web, ADV e gestione social — pensati su misura, non in serie.",
   keywords: [
-    "agenzia marketing",
-    "brand strategy",
+    "agenzia di marketing",
+    "agenzia marketing italia",
+    "marketing strategy",
     "social media management",
     "performance marketing",
-    "identità di brand",
-    "sito web",
+    "siti web e e-commerce",
+    "brand identity",
     "content marketing",
-    "ADV",
+    "ADV Google Meta",
+    "SEO",
+    "agenzia comunicazione",
+    "strategia editoriale",
   ],
   authors: [{ name: "Franca." }],
   openGraph: {
