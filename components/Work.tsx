@@ -66,7 +66,7 @@ export default function Work() {
       {/* Horizontal scroll track */}
       <div
         ref={trackRef}
-        className="hide-scrollbar flex gap-4 md:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 px-6 md:px-10"
+        className="hide-scrollbar flex gap-4 md:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 px-6 md:px-10 touch-pan-x"
         style={{ scrollPaddingLeft: '1.5rem' }}
       >
         {allCases.map((c, i) => (
