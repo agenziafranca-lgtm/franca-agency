@@ -75,7 +75,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="it" className={inter.variable}>
+    <html lang="it" className={inter.variable} suppressHydrationWarning>
       <body className="antialiased">
         {/* Pre-hydration: nasconde il contenuto se il preloader deve apparire,
             evita il flash della pagina prima che React monti */}
