@@ -5,8 +5,11 @@ import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { ArrowRight, X } from '@phosphor-icons/react'
 import TextReveal from './TextReveal'
 
+const SITO_LABEL = 'Ho bisogno di un sito web'
+
 const serviziOptions = [
   { label: 'Posizionarmi nel mio mercato', sub: 'logo, naming, identità, tono di voce' },
+  { label: SITO_LABEL, sub: 'sito vetrina o e-commerce' },
   { label: 'Foto, video e contenuti', sub: 'produzione creativa' },
   { label: 'Fare pubblicità online', sub: 'Google, Meta, social ads' },
   { label: 'Gestire i miei social', sub: 'strategia e piano editoriale' },
@@ -120,7 +123,14 @@ export default function CTA() {
 
   const toggleNoSito = () => {
     const next = !form.noSito
-    setForm((f) => ({ ...f, noSito: next, sito: next ? 'Non ho ancora un sito' : '' }))
+    setForm((f) => ({
+      ...f,
+      noSito: next,
+      sito: next ? 'Non ho ancora un sito' : '',
+      servizi: next && !f.servizi.includes(SITO_LABEL)
+        ? [...f.servizi, SITO_LABEL]
+        : f.servizi,
+    }))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {

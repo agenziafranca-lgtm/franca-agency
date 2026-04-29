@@ -76,11 +76,6 @@ export default function Work() {
         <div aria-hidden="true" className="shrink-0 w-2 md:w-6" />
       </div>
 
-      {/* Mobile hint */}
-      <div className="md:hidden mt-5 px-6 flex items-center gap-2 text-[#6b6b6b] text-[0.72rem] tracking-[0.1em] uppercase font-medium">
-        <span>Scorri</span>
-        <ArrowRight size={11} weight="bold" />
-      </div>
 
     </section>
   )
@@ -96,7 +91,7 @@ function CaseCard({ item, index }: { item: typeof allCases[0]; index: number }) 
       initial={{ opacity: 0, y: 28 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: Math.min(index * 0.06, 0.4) }}
-      className="shrink-0 snap-start w-[85vw] sm:w-[68vw] md:w-[58vw] lg:w-[52vw] xl:w-[640px] max-w-[720px]"
+      className="shrink-0 snap-start w-[78vw] sm:w-[68vw] md:w-[58vw] lg:w-[52vw] xl:w-[640px] max-w-[720px]"
     >
       <Link href={`/work/${item.slug}`} className="group block">
         <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-[#dcdcdc]">
