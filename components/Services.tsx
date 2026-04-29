@@ -7,7 +7,7 @@ import { ArrowUpRight } from '@phosphor-icons/react'
 const services = [
   {
     number: '01',
-    title: 'Perché scegliere voi?',
+    title: 'Perché sceglierci?',
     subtitle: 'Posizionamento e Identità',
     description: 'La maggior parte delle aziende non sa rispondere a questa domanda in modo convincente. Noi costruiamo la risposta: quella che le persone danno di voi quando non siete nella stanza. Un\'identità che si riconosce, si ricorda e si sceglie.',
     tags: ['Posizionamento', 'Naming', 'Identità Visiva', 'Tono di Voce', 'Messaggistica'],
