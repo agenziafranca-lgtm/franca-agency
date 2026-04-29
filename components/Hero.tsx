@@ -234,16 +234,12 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Desktop scroll indicator — verticale sul lato destro del pannello arancione */}
+        {/* Desktop scroll indicator — orizzontale in basso sul pannello arancione */}
         <motion.div
           style={{ opacity: indicatorOpacity }}
-          className="hidden lg:flex absolute top-1/2 -translate-y-1/2 right-[calc(58%+1.5rem)] xl:right-[calc(58%+2rem)] flex-col items-center gap-3 text-[#090909] z-20"
+          className="hidden lg:flex absolute bottom-8 left-10 xl:left-14 flex-col items-start gap-1.5 text-[#090909] z-20"
         >
-          <div className="flex flex-col items-center text-[0.7rem] font-bold tracking-[0.05em] leading-[1.6]">
-            {'SCROLL'.split('').map((letter, i) => (
-              <span key={i}>{letter}</span>
-            ))}
-          </div>
+          <span className="text-[0.7rem] font-bold tracking-[0.15em]">SCROLL</span>
           <motion.div
             animate={{ y: [0, 6, 0] }}
             transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
