@@ -88,7 +88,7 @@ function PrivacyModal({ onClose }: { onClose: () => void }) {
 
         {/* Footer */}
         <div className="px-7 py-4 border-t border-[#eaeaea] shrink-0">
-          <p className="text-[0.75rem] text-[#6b6b6b]">Ultimo aggiornamento: aprile 2026 — <a href="/privacy" target="_blank" className="text-[#ff462e] hover:underline">Versione completa</a></p>
+          <p className="text-[0.75rem] text-[#6b6b6b]">Ultimo aggiornamento: aprile 2026 · <a href="/privacy" target="_blank" className="text-[#ff462e] hover:underline">Versione completa</a></p>
         </div>
       </motion.div>
     </motion.div>
@@ -172,7 +172,7 @@ export default function CTA() {
               Parliamoci
             </TextReveal>
             <p className="text-[#6b6b6b] leading-relaxed text-[0.95rem]">
-              Raccontaci dove sei e dove vuoi arrivare. Ti risponderemo entro 24 ore — senza impegno, senza presentazioni da 80 slide.
+              Raccontaci dove sei e dove vuoi arrivare. Ti risponderemo entro 24 ore, senza impegno, senza presentazioni da 80 slide.
             </p>
           </div>
         </motion.div>
@@ -218,7 +218,7 @@ export default function CTA() {
               transition={{ duration: 0.5, delay: 0.85 }}
               className="text-[#6b6b6b] text-[0.95rem] max-w-[44ch] mx-auto"
             >
-              Ti risponderemo entro 24 ore. Intanto dai un'occhiata ai nostri lavori — forse trovi già qualcosa che ti somiglia.
+              Ti risponderemo entro 24 ore. Intanto dai un'occhiata ai nostri lavori, forse trovi già qualcosa che ti somiglia.
             </motion.p>
           </motion.div>
         ) : (

@@ -17,11 +17,11 @@ const BASE_URL = "https://agenziafranca.it"
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "Franca. — Agenzia di Marketing",
-    template: "%s — Franca.",
+    default: "Franca. | Agenzia di Marketing",
+    template: "%s | Franca.",
   },
   description:
-    "Agenzia di marketing per aziende che vogliono distinguersi. Strategia, contenuti, siti web, ADV e gestione social — pensati su misura, non in serie.",
+    "Agenzia di marketing per aziende che vogliono distinguersi. Strategia, contenuti, siti web, ADV e gestione social, pensati su misura, non in serie.",
   keywords: [
     "agenzia di marketing",
     "agenzia marketing italia",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     locale: "it_IT",
     url: BASE_URL,
     siteName: "Franca.",
-    title: "Franca. — Agenzia di Marketing",
+    title: "Franca. | Agenzia di Marketing",
     description:
       "Agenzia di marketing per aziende che vogliono distinguersi. Strategia, contenuti, siti web, ADV e gestione social.",
     images: [
@@ -50,13 +50,13 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Franca. — Agenzia di Marketing",
+        alt: "Franca. | Agenzia di Marketing",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Franca. — Agenzia di Marketing",
+    title: "Franca. | Agenzia di Marketing",
     description: "Agenzia di marketing per aziende che vogliono distinguersi davvero.",
     images: ["/opengraph-image"],
   },

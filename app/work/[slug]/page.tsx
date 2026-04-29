@@ -23,13 +23,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     openGraph: {
       type: 'article',
       url,
-      title: `${c.client} — Franca.`,
+      title: `${c.client} | Franca.`,
       description: c.tagline,
       images: [{ url: c.heroImage, width: 1200, height: 630, alt: c.client }],
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${c.client} — Franca.`,
+      title: `${c.client} | Franca.`,
       description: c.tagline,
       images: [c.heroImage],
     },
@@ -53,7 +53,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: `${c.client} — ${c.tagline}`,
+    headline: `${c.client}: ${c.tagline}`,
     description: c.challenge.slice(0, 200),
     image: `https://agenziafranca.it${c.heroImage}`,
     author: { '@type': 'Organization', name: 'Franca.' },
@@ -241,7 +241,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <img
                       src={r.cardImage}
-                      alt={`Caso studio ${r.client} — ${r.category}`}
+                      alt={`Caso studio ${r.client}, ${r.category}`}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#090909]/60 to-transparent" />

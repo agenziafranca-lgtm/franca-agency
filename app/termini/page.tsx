@@ -44,7 +44,7 @@ export default function TerminiPage() {
           <section>
             <h2 className="text-lg font-bold text-[#090909] mb-4">2. Proprietà intellettuale</h2>
             <p className="text-[0.95rem] text-[#6b6b6b] leading-relaxed">
-              Tutti i contenuti presenti su questo sito — testi, immagini, loghi, video, grafiche e codice sorgente — sono di proprietà esclusiva di Franca (Alessandro Viappiani e Matteo Novelli) o dei rispettivi aventi diritto, e sono protetti dalla normativa italiana ed europea sul diritto d'autore.
+              Tutti i contenuti presenti su questo sito (testi, immagini, loghi, video, grafiche e codice sorgente) sono di proprietà esclusiva di Franca (Alessandro Viappiani e Matteo Novelli) o dei rispettivi aventi diritto, e sono protetti dalla normativa italiana ed europea sul diritto d'autore.
             </p>
             <p className="text-[0.95rem] text-[#6b6b6b] leading-relaxed mt-4">
               È vietata qualsiasi riproduzione, distribuzione, modifica o utilizzo commerciale dei contenuti senza previa autorizzazione scritta. È consentita la consultazione personale e non commerciale.
@@ -72,7 +72,7 @@ export default function TerminiPage() {
           <section>
             <h2 className="text-lg font-bold text-[#090909] mb-4">4. Limitazione di responsabilità</h2>
             <p className="text-[0.95rem] text-[#6b6b6b] leading-relaxed">
-              Franca si impegna a mantenere il sito aggiornato e funzionante, ma non garantisce la disponibilità continua del servizio né l'assenza di errori nei contenuti. Non si assume responsabilità per danni diretti o indiretti derivanti dall'utilizzo — o dall'impossibilità di utilizzo — del sito.
+              Franca si impegna a mantenere il sito aggiornato e funzionante, ma non garantisce la disponibilità continua del servizio né l'assenza di errori nei contenuti. Non si assume responsabilità per danni diretti o indiretti derivanti dall'utilizzo, o dall'impossibilità di utilizzo, del sito.
             </p>
             <p className="text-[0.95rem] text-[#6b6b6b] leading-relaxed mt-4">
               I link a siti esterni sono forniti a solo scopo informativo. Franca non è responsabile dei contenuti di siti terzi.

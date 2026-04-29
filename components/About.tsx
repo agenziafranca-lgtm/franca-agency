@@ -128,7 +128,7 @@ export default function About() {
             <Eyebrow>I patti</Eyebrow>
             <div className="space-y-5 text-[1rem] text-[#6b6b6b] leading-relaxed max-w-[56ch]">
               <p>
-                Siamo in due. Lavoriamo da ovunque. Seguiamo pochi clienti alla volta — quelli con cui ha senso lavorare — e mettiamo la faccia su ogni cosa che firmiamo.
+                Siamo in due. Lavoriamo da ovunque. Seguiamo pochi clienti alla volta, quelli con cui ha senso lavorare, e mettiamo la faccia su ogni cosa che firmiamo.
               </p>
               <p>
                 Franca non vuole essere simpatica a tutti. Franca sceglie, ha un suo gusto e una sua filosofia.

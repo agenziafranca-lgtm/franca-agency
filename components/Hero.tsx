@@ -211,7 +211,7 @@ export default function Hero() {
               className="text-white/70 text-[1rem] leading-snug mb-10 max-w-[32ch]"
             >
               La maggior parte del marketing si dimentica in 24 ore.<br />
-              Noi facciamo marketing che resta — nella testa e nel cuore delle persone.
+              Noi facciamo marketing che resta, nella testa e nel cuore delle persone.
             </motion.p>
             <motion.div
               style={{ opacity: ctasOpacity, y: ctasY }}

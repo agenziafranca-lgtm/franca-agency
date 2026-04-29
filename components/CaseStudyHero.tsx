@@ -37,7 +37,7 @@ export default function CaseStudyHero({ image, category, client, tagline, liveUr
       >
         <img
           src={image}
-          alt={`Caso studio ${client} — ${category}`}
+          alt={`Caso studio ${client}, ${category}`}
           className="w-full h-full object-cover"
         />
       </motion.div>

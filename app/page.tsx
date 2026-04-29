@@ -12,7 +12,7 @@ const jsonLd = {
   '@type': 'Organization',
   name: 'Franca.',
   url: 'https://agenziafranca.it',
-  description: 'Agenzia di marketing per aziende che vogliono distinguersi davvero. Strategia, contenuti, siti web, ADV e gestione social — pensati su misura, non in serie.',
+  description: 'Agenzia di marketing per aziende che vogliono distinguersi davvero. Strategia, contenuti, siti web, ADV e gestione social, pensati su misura, non in serie.',
   email: 'mail@agenziafranca.it',
   contactPoint: {
     '@type': 'ContactPoint',

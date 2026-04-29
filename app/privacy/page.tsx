@@ -49,11 +49,11 @@ export default function PrivacyPage() {
             <ul className="space-y-3 text-[0.95rem] text-[#6b6b6b]">
               <li className="flex gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#ff462e] shrink-0 mt-2" />
-                <span><strong className="text-[#090909]">Dati di navigazione</strong> — indirizzo IP, tipo di browser, pagine visitate, orario di accesso. Raccolti automaticamente dai sistemi informatici del sito.</span>
+                <span><strong className="text-[#090909]">Dati di navigazione</strong>: indirizzo IP, tipo di browser, pagine visitate, orario di accesso. Raccolti automaticamente dai sistemi informatici del sito.</span>
               </li>
               <li className="flex gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#ff462e] shrink-0 mt-2" />
-                <span><strong className="text-[#090909]">Dati di contatto</strong> — nome, indirizzo email e contenuto del messaggio forniti volontariamente dall'utente tramite il modulo di contatto o via email diretta.</span>
+                <span><strong className="text-[#090909]">Dati di contatto</strong>: nome, indirizzo email e contenuto del messaggio forniti volontariamente dall'utente tramite il modulo di contatto o via email diretta.</span>
               </li>
             </ul>
           </section>
@@ -65,11 +65,11 @@ export default function PrivacyPage() {
               <ul className="space-y-3">
                 <li className="flex gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#ff462e] shrink-0 mt-2" />
-                  <span><strong className="text-[#090909]">Rispondere alle richieste di contatto</strong> — base giuridica: consenso dell'interessato (Art. 6, lett. a, GDPR).</span>
+                  <span><strong className="text-[#090909]">Rispondere alle richieste di contatto</strong>: consenso dell'interessato (Art. 6, lett. a, GDPR).</span>
                 </li>
                 <li className="flex gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#ff462e] shrink-0 mt-2" />
-                  <span><strong className="text-[#090909]">Analisi statistica anonima</strong> della navigazione per migliorare il sito — base giuridica: interesse legittimo (Art. 6, lett. f, GDPR).</span>
+                  <span><strong className="text-[#090909]">Analisi statistica anonima</strong> della navigazione per migliorare il sito: interesse legittimo (Art. 6, lett. f, GDPR).</span>
                 </li>
               </ul>
             </div>

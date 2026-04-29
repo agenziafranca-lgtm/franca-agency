@@ -27,10 +27,10 @@ export const cases: CaseStudy[] = [
     heroImage: '/clients/esse-ci/cover-franca.png',
     images: ['/clients/esse-ci/02.jpg', '/clients/esse-ci/03.jpg'],
     services: ['Strategia editoriale', 'Social media management', 'Newsletter', 'Podcast', 'Shooting fotografico'],
-    challenge: 'Esse-CI Avvocati è uno studio legale giovane con una competenza reale su diritto digitale, privacy e compliance — materie che interessano sempre più aziende ma che, nel modo sbagliato, annoiano tutti. Quando li abbiamo incontrati, pubblicavano live settimanali di un\'ora su temi tecnici, articoli pieni di gergo legale e post che sembravano circolari ministeriali. Parlavano ad una stanza vuota.',
+    challenge: 'Esse-CI Avvocati è uno studio legale giovane con una competenza reale su diritto digitale, privacy e compliance: materie che interessano sempre più aziende ma che, nel modo sbagliato, annoiano tutti. Quando li abbiamo incontrati, pubblicavano live settimanali di un\'ora su temi tecnici, articoli pieni di gergo legale e post che sembravano circolari ministeriali. Parlavano ad una stanza vuota.',
     approach: [
-      'Il primo passo è stato smettere di parlare agli avvocati e iniziare a parlare alle persone. Ogni argomento legale — dalla privacy dei dati all\'eredità digitale, dai droni come prove in tribunale ai contratti smart — esiste perché tocca la vita reale di qualcuno.',
-      'Abbiamo trasformato i format esistenti: le live infinite sono diventate pillole veloci. Gli articoli tecnici sono diventati storie. "Privacy Today" è diventata una newsletter mensile che le persone aspettano — non una che archiviano senza leggere.',
+      'Il primo passo è stato smettere di parlare agli avvocati e iniziare a parlare alle persone. Ogni argomento legale, dalla privacy dei dati all\'eredità digitale, dai droni come prove in tribunale ai contratti smart, esiste perché tocca la vita reale di qualcuno.',
+      'Abbiamo trasformato i format esistenti: le live infinite sono diventate pillole veloci. Gli articoli tecnici sono diventati storie. "Privacy Today" è diventata una newsletter mensile che le persone aspettano, non una che archiviano senza leggere.',
       'Abbiamo anche lavorato sul lato umano dello studio: dietro ai titoli di avvocato ci sono persone con personalità, opinioni, passioni. Farle emergere ha cambiato il tono di tutto.',
     ],
     results: [
@@ -41,15 +41,15 @@ export const cases: CaseStudy[] = [
     body: [
       {
         section: 'Il pubblico vero',
-        text: 'L\'errore più comune negli studi legali è scrivere come se tutti i lettori fossero avvocati. Esse-CI parlava a colleghi quando avrebbe dovuto parlare a chi cerca risposte: imprenditori che gestiscono dati personali, lavoratori da remoto che non sanno se la loro firma vale davvero, professionisti che hanno costruito un patrimonio digitale senza mai aver pensato all\'eredità. Abbiamo riscritto ogni piano editoriale partendo da una domanda: chi ha bisogno di sapere questa cosa, e perché? La risposta ha cambiato tutto — il tono, la lunghezza, le parole, persino le piattaforme.',
+        text: 'L\'errore più comune negli studi legali è scrivere come se tutti i lettori fossero avvocati. Esse-CI parlava a colleghi quando avrebbe dovuto parlare a chi cerca risposte: imprenditori che gestiscono dati personali, lavoratori da remoto che non sanno se la loro firma vale davvero, professionisti che hanno costruito un patrimonio digitale senza mai aver pensato all\'eredità. Abbiamo riscritto ogni piano editoriale partendo da una domanda: chi ha bisogno di sapere questa cosa, e perché? La risposta ha cambiato tutto: il tono, la lunghezza, le parole, persino le piattaforme.',
       },
       {
         section: 'I format trasformati',
-        text: 'Le live di un\'ora su temi tecnici sono diventate pillole verticali sui dubbi reali: "Posso licenziare per un post su Facebook?", "Le mie chat WhatsApp sono prove valide?". Gli articoli pieni di rimandi normativi sono diventati storie che partono da un caso concreto e arrivano alla regola. La newsletter mensile "Privacy Today" è stata ridisegnata per essere letta in cinque minuti durante un caffè — non archiviata insieme alle circolari aziendali. Stessa competenza, modo di consegnarla completamente diverso.',
+        text: 'Le live di un\'ora su temi tecnici sono diventate pillole verticali sui dubbi reali: "Posso licenziare per un post su Facebook?", "Le mie chat WhatsApp sono prove valide?". Gli articoli pieni di rimandi normativi sono diventati storie che partono da un caso concreto e arrivano alla regola. La newsletter mensile "Privacy Today" è stata ridisegnata per essere letta in cinque minuti durante un caffè, non archiviata insieme alle circolari aziendali. Stessa competenza, modo di consegnarla completamente diverso.',
       },
       {
         section: 'Il nuovo posizionamento',
-        text: 'Sei mesi dopo, Esse-CI non viene più cercato per "avvocato a [città]". Viene cercato per nome. Le aziende lo contattano dopo aver letto un post o ascoltato una pillola, non dopo una ricerca SEO. Gli stessi argomenti che prima riempivano lo studio di silenzio ora generano commenti, condivisioni, richieste di consulenza specifiche. La differenza non è stata fare più contenuti — è stata farli per qualcuno di preciso.',
+        text: 'Sei mesi dopo, Esse-CI non viene più cercato per "avvocato a [città]". Viene cercato per nome. Le aziende lo contattano dopo aver letto un post o ascoltato una pillola, non dopo una ricerca SEO. Gli stessi argomenti che prima riempivano lo studio di silenzio ora generano commenti, condivisioni, richieste di consulenza specifiche. La differenza non è stata fare più contenuti: è stata farli per qualcuno di preciso.',
       },
     ],
   },
@@ -62,11 +62,11 @@ export const cases: CaseStudy[] = [
     heroImage: '/clients/landscape-barber/cover-franca.png',
     images: ['/clients/landscape-barber/02.jpg', '/clients/landscape-barber/03.jpg'],
     services: ['Social media management', 'Content strategy', 'Produzione contenuti', 'Video editing'],
-    challenge: 'Domenico è un barbiere con una professionalità assoluta e un amore viscerale per il viaggio. Quando ci ha contattato, stava facendo la cosa peggiore possibile: comprava follower. I numeri crescevano, ma erano vuoti — nessuna interazione, nessuna community, nessuna reputazione. Era ambassador di Gamma+ ma il più piccolo del gruppo. Voleva crescere, e cercava il modo sbagliato per farlo.',
+    challenge: 'Domenico è un barbiere con una professionalità assoluta e un amore viscerale per il viaggio. Quando ci ha contattato, stava facendo la cosa peggiore possibile: comprava follower. I numeri crescevano, ma erano vuoti: nessuna interazione, nessuna community, nessuna reputazione. Era ambassador di Gamma+ ma il più piccolo del gruppo. Voleva crescere, e cercava il modo sbagliato per farlo.',
     approach: [
-      'Abbiamo smesso di guardare il contatore. Il primo passo è stato capire chi era Domenico davvero — non "un barbiere su Instagram", ma un esploratore con le forbici in mano. Questa è diventata la strategia.',
-      'Il nuovo obiettivo non era più "vendere un taglio" ma "portare la community in viaggio con lui". Ogni destinazione — Argentina, Kenya, Egitto — è diventata un capitolo della sua storia. I contenuti mostravano Domenico al lavoro nei posti più inaspettati del mondo.',
-      'Abbiamo lavorato sulla qualità della produzione, sulla coerenza narrativa e sull\'autenticità: meno promozione, più vita reale. Il risultato è stato una community che segue Domenico — non i suoi servizi.',
+      'Abbiamo smesso di guardare il contatore. Il primo passo è stato capire chi era Domenico davvero, non "un barbiere su Instagram", ma un esploratore con le forbici in mano. Questa è diventata la strategia.',
+      'Il nuovo obiettivo non era più "vendere un taglio" ma "portare la community in viaggio con lui". Ogni destinazione (Argentina, Kenya, Egitto) è diventata un capitolo della sua storia. I contenuti mostravano Domenico al lavoro nei posti più inaspettati del mondo.',
+      'Abbiamo lavorato sulla qualità della produzione, sulla coerenza narrativa e sull\'autenticità: meno promozione, più vita reale. Il risultato è stato una community che segue Domenico, non i suoi servizi.',
     ],
     results: [
       { value: '4 paesi', label: 'Contenuti da Argentina, Kenya, Egitto e oltre' },
@@ -76,15 +76,15 @@ export const cases: CaseStudy[] = [
     body: [
       {
         section: 'La community ricostruita',
-        text: 'La prima cosa fatta è stata fermare l\'emorragia: niente più follower comprati. La seconda è stata accettare che i numeri sarebbero scesi prima di risalire — e farsene una ragione. Abbiamo ripulito il profilo, rifatto la bio, riscritto la presentazione. Ogni post nuovo era pensato per essere visto da meno persone ma da quelle giuste. Le interazioni sono cresciute prima dei follower. Le persone hanno iniziato a commentare, a chiedere, a dire "quando torni in zona?". Quello è il momento in cui esiste una community.',
+        text: 'La prima cosa fatta è stata fermare l\'emorragia: niente più follower comprati. La seconda è stata accettare che i numeri sarebbero scesi prima di risalire, e farsene una ragione. Abbiamo ripulito il profilo, rifatto la bio, riscritto la presentazione. Ogni post nuovo era pensato per essere visto da meno persone ma da quelle giuste. Le interazioni sono cresciute prima dei follower. Le persone hanno iniziato a commentare, a chiedere, a dire "quando torni in zona?". Quello è il momento in cui esiste una community.',
       },
       {
         section: 'Il barbiere viaggiatore',
-        text: 'Domenico va in Argentina e fa tagli a Buenos Aires. Va in Kenya e taglia i capelli ai bambini di una scuola. Va in Egitto e lavora davanti alle piramidi. Ogni viaggio è diventato un capitolo del racconto — non un evento sponsorizzato, non un set finto. La qualità del barbiere è la stessa che farebbe nel suo negozio di provincia. Ma il contesto cambia tutto. Il mestiere non vende più "un servizio": vende "partecipare a una storia". E le persone vogliono partecipare alle storie più che comprare servizi.',
+        text: 'Domenico va in Argentina e fa tagli a Buenos Aires. Va in Kenya e taglia i capelli ai bambini di una scuola. Va in Egitto e lavora davanti alle piramidi. Ogni viaggio è diventato un capitolo del racconto, non un evento sponsorizzato, non un set finto. La qualità del barbiere è la stessa che farebbe nel suo negozio di provincia. Ma il contesto cambia tutto. Il mestiere non vende più "un servizio": vende "partecipare a una storia". E le persone vogliono partecipare alle storie più che comprare servizi.',
       },
       {
         section: 'I risultati che restano',
-        text: 'Gamma+ ha smesso di trattarlo come uno qualunque — lo chiama agli eventi internazionali. I giocatori di Serie A che frequentano la zona vanno da lui non per il taglio, ma per fare parte del suo racconto. I follower comprati anni fa sono stati silenziati dall\'algoritmo; quelli arrivati con il nuovo approccio commentano ogni post. Domenico oggi non ha clienti: ha persone che decidono dove vogliono essere quando si fanno tagliare i capelli.',
+        text: 'Gamma+ ha smesso di trattarlo come uno qualunque: lo chiama agli eventi internazionali. I giocatori di Serie A che frequentano la zona vanno da lui non per il taglio, ma per fare parte del suo racconto. I follower comprati anni fa sono stati silenziati dall\'algoritmo; quelli arrivati con il nuovo approccio commentano ogni post. Domenico oggi non ha clienti: ha persone che decidono dove vogliono essere quando si fanno tagliare i capelli.',
       },
     ],
   },
@@ -92,16 +92,16 @@ export const cases: CaseStudy[] = [
     slug: 'loft',
     client: 'Loft',
     category: 'Sito Web + Social',
-    tagline: 'Un lancio che sembrava un evento — perché lo era.',
+    tagline: 'Un lancio che sembrava un evento, perché lo era.',
     cardImage: '/clients/loft/cover-franca.png',
     heroImage: '/clients/loft/cover-franca.png',
     images: ['/clients/loft/02.jpg', '/clients/loft/03.jpg'],
     services: ['Progettazione sito web', 'Social media management', 'Strategia social', 'Evento di lancio', 'Shooting fotografico'],
-    challenge: 'Loft aveva bisogno di una presenza digitale completa: un sito che funzionasse come vetrina e come strumento di vendita, e una strategia social che costruisse pubblico prima ancora dell\'apertura. Il rischio era fare le cose "per farle" — un sito generico, qualche post su Instagram, e poi silenzio.',
+    challenge: 'Loft aveva bisogno di una presenza digitale completa: un sito che funzionasse come vetrina e come strumento di vendita, e una strategia social che costruisse pubblico prima ancora dell\'apertura. Il rischio era fare le cose "per farle": un sito generico, qualche post su Instagram, e poi silenzio.',
     approach: [
       'Abbiamo iniziato dalla strategia, non dal design. Prima di aprire qualsiasi file, abbiamo definito chi è Loft, a chi parla e cosa vuole comunicare. Solo dopo abbiamo costruito il sito e il piano social.',
-      'Il lancio non è stato un momento — è stato una campagna. Abbiamo lavorato per creare attesa prima dell\'apertura, trasformando l\'evento di lancio del sito in qualcosa che le persone aspettavano di vivere di persona.',
-      'La strategia social dei 12 mesi successivi è stata costruita per mantenere il ritmo: contenuti che raccontano il brand, non solo i prodotti. Perché un brand di moda non vende abiti — vende un\'idea di sé.',
+      'Il lancio non è stato un momento: è stato una campagna. Abbiamo lavorato per creare attesa prima dell\'apertura, trasformando l\'evento di lancio del sito in qualcosa che le persone aspettavano di vivere di persona.',
+      'La strategia social dei 12 mesi successivi è stata costruita per mantenere il ritmo: contenuti che raccontano il brand, non solo i prodotti. Perché un brand di moda non vende abiti: vende un\'idea di sé.',
     ],
     results: [
       { value: 'Sito', label: 'Lanciato con evento dedicato' },
@@ -115,7 +115,7 @@ export const cases: CaseStudy[] = [
       },
       {
         section: 'Il lancio',
-        text: 'L\'evento di apertura non era una festa — era una dichiarazione. Abbiamo curato ogni dettaglio della comunicazione, dall\'invito alla copertura fotografica, per assicurarci che il ricordo che le persone si portavano a casa corrispondesse all\'identità che volevamo costruire.',
+        text: 'L\'evento di apertura non era una festa: era una dichiarazione. Abbiamo curato ogni dettaglio della comunicazione, dall\'invito alla copertura fotografica, per assicurarci che il ricordo che le persone si portavano a casa corrispondesse all\'identità che volevamo costruire.',
       },
       {
         section: 'Dopo il lancio',
@@ -132,11 +132,11 @@ export const cases: CaseStudy[] = [
     heroImage: '/clients/mondo-in-altalena/cover-franca.png',
     images: ['/clients/mondo-in-altalena/02.jpg', '/clients/mondo-in-altalena/03.jpg'],
     services: ['Rebranding e logo', 'Gestione ADV (Meta + Google)', 'Strategia SEO organica', 'Piano editoriale', 'Content management'],
-    challenge: 'Mondo in Altalena organizza viaggi in otto destinazioni — Giappone, Islanda, Indonesia, Perù, USA, Dolomiti, Cinque Terre, barca a vela nel Mediterraneo. Prodotti eccezionali, esperienza vera, clienti soddisfatti. Ma la comunicazione non rendeva giustizia a nessuna di queste cose. L\'identità visiva era datata, la presenza online frammentata, le campagne ADV gestite senza una logica unificata.',
+    challenge: 'Mondo in Altalena organizza viaggi in otto destinazioni: Giappone, Islanda, Indonesia, Perù, USA, Dolomiti, Cinque Terre, barca a vela nel Mediterraneo. Prodotti eccezionali, esperienza vera, clienti soddisfatti. Ma la comunicazione non rendeva giustizia a nessuna di queste cose. L\'identità visiva era datata, la presenza online frammentata, le campagne ADV gestite senza una logica unificata.',
     approach: [
-      'Il punto di partenza è stato il rebranding: un nuovo logo e un\'identità visiva capace di reggere su ogni destinazione — dal trekking sull\'Appennino all\'oceano islandese.',
+      'Il punto di partenza è stato il rebranding: un nuovo logo e un\'identità visiva capace di reggere su ogni destinazione, dal trekking sull\'Appennino all\'oceano islandese.',
       'Abbiamo costruito una strategia editoriale per destinazione: ogni viaggio ha la sua narrativa, il suo pubblico, il suo momento migliore per essere raccontato. Il Giappone in primavera parla a persone diverse dal Perù in autunno.',
-      'Le campagne ADV sono state strutturate per portare traffico qualificato — non click generici, ma persone che avevano già cercato esattamente quel tipo di viaggio. La strategia SEO organica ha lavorato in parallelo per ridurre la dipendenza dal pagato nel tempo.',
+      'Le campagne ADV sono state strutturate per portare traffico qualificato, non click generici, ma persone che avevano già cercato esattamente quel tipo di viaggio. La strategia SEO organica ha lavorato in parallelo per ridurre la dipendenza dal pagato nel tempo.',
     ],
     results: [
       { value: '8', label: 'Destinazioni con piano editoriale dedicato' },
@@ -167,9 +167,9 @@ export const cases: CaseStudy[] = [
     heroImage: '/clients/miramonti/cover-franca.png',
     images: ['/clients/miramonti/02.jpg', '/clients/miramonti/03.jpg'],
     services: ['Sito web', 'Shooting fotografico', 'Produzione video', 'Content management'],
-    challenge: 'Miramonti è una struttura ricettiva immersa nella natura, con camere curate, una cucina di qualità e un\'atmosfera che difficilmente si trova altrove. Il problema era che tutto questo lo si scopriva solo arrivando. Online, la struttura era quasi invisibile — e quel poco che si trovava non rendeva merito a quello che c\'era.',
+    challenge: 'Miramonti è una struttura ricettiva immersa nella natura, con camere curate, una cucina di qualità e un\'atmosfera che difficilmente si trova altrove. Il problema era che tutto questo lo si scopriva solo arrivando. Online, la struttura era quasi invisibile, e quel poco che si trovava non rendeva merito a quello che c\'era.',
     approach: [
-      'Prima di qualsiasi cosa: uno shooting fotografico serio. Non foto di repertorio, non smartphone in corridoio — una produzione pensata per mostrare gli spazi come li vive chi ci dorme, non come li cataloga un annuncio.',
+      'Prima di qualsiasi cosa: uno shooting fotografico serio. Non foto di repertorio, non smartphone in corridoio: una produzione pensata per mostrare gli spazi come li vive chi ci dorme, non come li cataloga un annuncio.',
       'I contenuti video hanno raccontato la struttura in movimento: la luce del mattino, il silenzio delle camere, la cucina al lavoro. Il tipo di contenuto che fa scorrere il dito e poi fermare.',
       'Il sito è stato costruito intorno a queste immagini: pulito, veloce, ottimizzato per chi prenota da mobile dopo aver visto un contenuto.',
     ],
@@ -185,7 +185,7 @@ export const cases: CaseStudy[] = [
       },
       {
         section: 'Lo shooting',
-        text: 'Abbiamo fotografato ogni spazio — le camere, le suite, i corridoi, il ristorante, i dintorni — con l\'unico obiettivo di trasmettere la sensazione di stare lì. Non la lista dei servizi: la sensazione.',
+        text: 'Abbiamo fotografato ogni spazio (le camere, le suite, i corridoi, il ristorante, i dintorni) con l\'unico obiettivo di trasmettere la sensazione di stare lì. Non la lista dei servizi: la sensazione.',
       },
       {
         section: 'Il sito',
@@ -204,8 +204,8 @@ export const cases: CaseStudy[] = [
     services: ['Branding e identità visiva', 'Sito web', 'Contenuti per i percorsi', 'Materiali stampa', 'Planning eventi 2025–2026'],
     challenge: 'Il Trail della Pietra è un evento di trail running sull\'Appennino Reggiano, con tre percorsi chiamati Inferno, Purgatorio e Paradiso. Un concept forte, un territorio straordinario, un\'organizzazione seria. Mancava un brand all\'altezza: qualcosa che comunicasse la durezza e la bellezza dell\'Appennino senza sembrare amatoriale.',
     approach: [
-      'Il nome dei percorsi era già un sistema narrativo perfetto. Abbiamo costruito l\'identità visiva intorno a quel filo — tre livelli, tre esperienze diverse, un\'unica anima.',
-      'Il sito è stato progettato come prima esperienza dell\'evento: ogni percorso ha la sua scheda, con descrizione, difficoltà, dislivello e atmosfera. Non un\'iscrizione — un invito.',
+      'Il nome dei percorsi era già un sistema narrativo perfetto. Abbiamo costruito l\'identità visiva intorno a quel filo: tre livelli, tre esperienze diverse, un\'unica anima.',
+      'Il sito è stato progettato come prima esperienza dell\'evento: ogni percorso ha la sua scheda, con descrizione, difficoltà, dislivello e atmosfera. Non un\'iscrizione: un invito.',
       'Abbiamo lavorato anche sui materiali stampati per l\'evento: locandine, cartelli, materiale per i punti di ristoro. Ogni pezzo coerente con il brand, ogni pezzo pensato per resistere alla pioggia e al fango dell\'Appennino.',
     ],
     results: [
@@ -216,11 +216,11 @@ export const cases: CaseStudy[] = [
     body: [
       {
         section: 'Il brand',
-        text: 'Inferno, Purgatorio, Paradiso. Tre parole che già raccontano tutto. Il nostro lavoro è stato costruire un sistema visivo che reggesse questo concept — duro, bello, appenninico. Niente effetti speciali: solo materia e luce.',
+        text: 'Inferno, Purgatorio, Paradiso. Tre parole che già raccontano tutto. Il nostro lavoro è stato costruire un sistema visivo che reggesse questo concept: duro, bello, appenninico. Niente effetti speciali: solo materia e luce.',
       },
       {
         section: 'Il sito',
-        text: 'Il sito del Trail della Pietra è pensato per chi deve decidere se iscriversi. Ogni percorso è descritto con precisione e rispetto — non per spaventare, ma per preparare. Chi arriva alla partenza sa già cosa lo aspetta.',
+        text: 'Il sito del Trail della Pietra è pensato per chi deve decidere se iscriversi. Ogni percorso è descritto con precisione e rispetto, non per spaventare, ma per preparare. Chi arriva alla partenza sa già cosa lo aspetta.',
       },
       {
         section: 'Il progetto ricorrente',
@@ -242,7 +242,7 @@ export const cases: CaseStudy[] = [
     approach: [
       'Abbiamo iniziato dall\'identità visiva: un sistema di logo declinabile su tutti i supporti, con una palette cromatica coerente e una gerarchia tipografica chiara.',
       'Il lavoro si è poi esteso agli applicativi fisici: cartelloni, volantini, merchandise. Ogni pezzo progettato partendo dall\'identità, non dalla convenienza.',
-      'La linea merchandise — polo, spille, gadget — è stata pensata per essere usata, non per stare in un cassetto. Oggetti che le persone portano fuori e che diventano comunicazione.',
+      'La linea merchandise (polo, spille, gadget) è stata pensata per essere usata, non per stare in un cassetto. Oggetti che le persone portano fuori e che diventano comunicazione.',
     ],
     results: [
       { value: 'Brand', label: 'Identità visiva completa e applicata' },
@@ -252,7 +252,7 @@ export const cases: CaseStudy[] = [
     body: [
       {
         section: 'L\'identità',
-        text: 'Un brand del benessere deve trasmettere fiducia prima ancora di spiegare cosa fa. Abbiamo costruito un sistema visivo che funziona su ogni formato — digitale e fisico — senza perdere coerenza.',
+        text: 'Un brand del benessere deve trasmettere fiducia prima ancora di spiegare cosa fa. Abbiamo costruito un sistema visivo che funziona su ogni formato, digitale e fisico, senza perdere coerenza.',
       },
       {
         section: 'Il merchandise',
@@ -276,7 +276,7 @@ export const cases: CaseStudy[] = [
     challenge: 'Felina è un borgo dell\'Appennino Reggiano con un castello, una torre medievale, una Big Bench sul Monte Fosola, ristoranti buoni e un\'aria che non trovi altrove. Il problema era la visibilità: chi non veniva da lì, non sapeva che esisteva. E chi cercava qualcosa da fare in zona non trovava niente di organizzato e aggiornato.',
     approach: [
       'Abbiamo costruito un portale turistico che funziona come guida locale: ristoranti, alloggi, escursioni, eventi, sport. Tutto in un\'unica piattaforma aggiornabile in tempo reale.',
-      'Il database è stato costruito con cura: ogni attività ha una scheda, ogni scheda ha le informazioni che servono davvero a chi arriva da fuori. Non una lista — un\'esperienza di scoperta.',
+      'Il database è stato costruito con cura: ogni attività ha una scheda, ogni scheda ha le informazioni che servono davvero a chi arriva da fuori. Non una lista: un\'esperienza di scoperta.',
       'Il progetto è pensato per crescere: ogni nuovo ristorante, ogni nuovo evento, ogni nuova escursione può essere aggiunta senza rimettere mano alla struttura.',
     ],
     results: [
@@ -295,7 +295,7 @@ export const cases: CaseStudy[] = [
       },
       {
         section: 'Il progetto continuo',
-        text: 'La Pro Loco aggiorna il portale con le novità del territorio — nuove attività, nuovi eventi, cambi di orario. Il database è stato costruito per rendere questi aggiornamenti semplici e veloci, senza bisogno di interventi tecnici.',
+        text: 'La Pro Loco aggiorna il portale con le novità del territorio: nuove attività, nuovi eventi, cambi di orario. Il database è stato costruito per rendere questi aggiornamenti semplici e veloci, senza bisogno di interventi tecnici.',
       },
     ],
   },
@@ -309,11 +309,11 @@ export const cases: CaseStudy[] = [
     images: [],
     liveUrl: 'https://ibizamymood.com',
     services: ['Sviluppo sito web', 'Architettura informativa', 'UX/UI design', 'Performance e SEO tecnico'],
-    challenge: 'Federica Di Gregorio ha costruito una community fedele su Instagram intorno alla sua passione per Ibiza — non come destinazione turistica generica, ma come isola con una sua precisa anima, da vivere bene. Quando ci siamo incontrati il problema era chiaro: il pubblico la cercava, voleva i suoi consigli, voleva prenotare le esperienze che lei suggeriva. Ma c\'era solo un profilo Instagram. Niente di strutturato, niente di duraturo.',
+    challenge: 'Federica Di Gregorio ha costruito una community fedele su Instagram intorno alla sua passione per Ibiza, non come destinazione turistica generica, ma come isola con una sua precisa anima, da vivere bene. Quando ci siamo incontrati il problema era chiaro: il pubblico la cercava, voleva i suoi consigli, voleva prenotare le esperienze che lei suggeriva. Ma c\'era solo un profilo Instagram. Niente di strutturato, niente di duraturo.',
     approach: [
-      'Il primo passo è stato non snaturare. Federica ha un\'estetica sua — pulita, editoriale, decisa. Il sito non doveva sembrare l\'ennesimo travel blog: doveva sembrare un\'estensione naturale del suo modo di curare l\'isola.',
+      'Il primo passo è stato non snaturare. Federica ha un\'estetica sua: pulita, editoriale, decisa. Il sito non doveva sembrare l\'ennesimo travel blog: doveva sembrare un\'estensione naturale del suo modo di curare l\'isola.',
       'Abbiamo strutturato l\'esperienza utente intorno a tre pilastri precisi: cosa serve concretamente per vivere Ibiza (Servizi), cosa succede sull\'isola in stagione (Calendario Party), e cosa solo un local conosce (Guida all\'Isola). Tre porte d\'ingresso al brand, una per ogni tipologia di visitatore.',
-      'Tipograficamente, il sito è costruito intorno a una grande parola che si scrive a schermo — "ESPLORA" — perché è esattamente quello che fanno le persone quando arrivano. Niente immagini tipiche da agenzia di viaggi: solo carattere, parole, e un design che fa respirare.',
+      'Tipograficamente, il sito è costruito intorno a una grande parola che si scrive a schermo, "ESPLORA", perché è esattamente quello che fanno le persone quando arrivano. Niente immagini tipiche da agenzia di viaggi: solo carattere, parole, e un design che fa respirare.',
     ],
     results: [
       { value: '3', label: 'Pilastri di contenuto strutturati' },
@@ -323,7 +323,7 @@ export const cases: CaseStudy[] = [
     body: [
       {
         section: 'Un\'estetica trasferibile',
-        text: 'Il brand di Federica è nato sui social — è già visivamente riconoscibile. Il nostro lavoro è stato traslare quel linguaggio in un mezzo diverso senza tradurlo male. Tipografia serif decisa, palette pulita di blu mediterraneo e bianco, assenza di stock photography. Su Instagram funziona perché è autentico; sul sito funziona perché è coerente.',
+        text: 'Il brand di Federica è nato sui social ed è già visivamente riconoscibile. Il nostro lavoro è stato traslare quel linguaggio in un mezzo diverso senza tradurlo male. Tipografia serif decisa, palette pulita di blu mediterraneo e bianco, assenza di stock photography. Su Instagram funziona perché è autentico; sul sito funziona perché è coerente.',
       },
       {
         section: 'Tre pilastri, un ingresso',

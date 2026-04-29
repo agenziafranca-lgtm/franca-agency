@@ -64,7 +64,7 @@ export default function CookiePage() {
                   Utilizzati per raccogliere informazioni anonime sull'utilizzo del sito (pagine visitate, tempo di permanenza, provenienza geografica). I dati sono aggregati e non consentono di identificare singoli utenti. L'indirizzo IP viene anonimizzato prima della trasmissione a Google.
                 </p>
                 <p className="text-[0.8rem] text-[#6b6b6b] mt-3">
-                  Gestore: Google LLC — <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-[#ff462e] hover:underline">Privacy Policy Google</a>
+                  Gestore: Google LLC · <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-[#ff462e] hover:underline">Privacy Policy Google</a>
                 </p>
               </div>
 
